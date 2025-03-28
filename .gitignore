@@ -1,0 +1,62 @@
+# =============== #
+# Unity .gitignore #
+# =============== #
+
+# Ignore system files
+.DS_Store
+Thumbs.db
+
+# Ignore Unity-generated folders
+Library/
+Logs/
+Temp/
+Obj/
+Build/
+Builds/
+UserSettings/
+
+# Ignore Unity-generated files
+*.csproj
+*.unityproj
+*.sln
+*.suo
+*.tmp
+*.user
+*.pidb
+*.booproj
+*.svd
+*.pdb
+*.opendb
+*.VC.db
+
+# Ignore crash reports and logs
+sysinfo.txt
+*.stacktrace
+
+# Ignore Visual Studio/JetBrains Rider/VS Code settings
+.vscode/
+.idea/
+*.iml
+
+# Ignore Unity Collaborate metadata
+.Collab/
+.CollabIgnore
+
+# Ignore Lightmapping data
+LightmapSnapshot/
+
+# Ignore Play Mode test results
+Assets/StreamingAssets/UnityPlayModeTests/
+
+# Ignore auto-generated Plugin files
+Assets/Plugins/*/Editor/*
+
+# Ignore Package Manager cache
+Packages/packages-lock.json
+
+# Ignore local dev settings
+ProjectSettings/EditorBuildSettings.asset
+
+# Uncomment if you use JetBrains Rider
+# .idea/
+
