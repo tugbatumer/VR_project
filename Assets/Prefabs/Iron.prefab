@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 540395578242255521}
   - component: {fileID: 7110312042706495619}
   - component: {fileID: 7609909942633170157}
+  - component: {fileID: 369660898050088038}
   m_Layer: 0
   m_Name: Iron
   m_TagString: Untagged
@@ -31,7 +32,7 @@ Transform:
   m_GameObject: {fileID: 1892542985565717031}
   serializedVersion: 2
   m_LocalRotation: {x: 0.5, y: -0.5, z: 0.5, w: 0.5}
-  m_LocalPosition: {x: 0, y: 0.126, z: 4.341}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -233,9 +234,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a950511470fbe4b7780834660aaf5293, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ironAmount: 5
-  glassAmount: 5
-  woodAmount: 5
+  amount: 5
   collectibleType: 0
 --- !u!114 &7609909942633170157
 MonoBehaviour:
@@ -255,3 +254,30 @@ MonoBehaviour:
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
+--- !u!54 &369660898050088038
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1892542985565717031}
+  serializedVersion: 4
+  m_Mass: 100
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0

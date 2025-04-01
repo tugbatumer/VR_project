@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: -8311441564069657976}
   - component: {fileID: 2072881288142652581}
   - component: {fileID: -2447030997683725153}
+  - component: {fileID: -1984995440652337211}
   m_Layer: 0
   m_Name: Wood
   m_TagString: Untagged
@@ -31,7 +32,7 @@ Transform:
   m_GameObject: {fileID: 3826599597685375619}
   serializedVersion: 2
   m_LocalRotation: {x: 0.6767423, y: 0.2049876, z: -0.2049876, w: 0.6767423}
-  m_LocalPosition: {x: -0.768, y: 0.096, z: 3.807}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.15, y: 0.3, z: 0.15}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -123,9 +124,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a950511470fbe4b7780834660aaf5293, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ironAmount: 5
-  glassAmount: 5
-  woodAmount: 5
+  amount: 5
   collectibleType: 2
 --- !u!114 &2072881288142652581
 MonoBehaviour:
@@ -253,3 +252,30 @@ MonoBehaviour:
   m_StartingHoverFilters: []
   m_StartingSelectFilters: []
   m_StartingInteractionStrengthFilters: []
+--- !u!54 &-1984995440652337211
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3826599597685375619}
+  serializedVersion: 4
+  m_Mass: 15
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0

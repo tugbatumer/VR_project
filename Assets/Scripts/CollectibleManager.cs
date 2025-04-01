@@ -1,15 +1,18 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class CollectibleManager : MonoBehaviour
 {
-    
     public static CollectibleManager Instance { get; set; }
-    
-    [Header("Collectibles")] 
-    public int ironAmount = 0;
-    public int glassAmount = 0;
-    public int woodAmount = 0;
-    
+
+    [Header("Collectibles")]
+    public GameObject ironPartPrefab;
+    public GameObject glassPartPrefab;
+    public GameObject woodPartPrefab;
+
+    private Dictionary<Collectible.CollectibleType, int> collectibleCounts;
+    private Dictionary<Collectible.CollectibleType, GameObject> collectiblePrefabs;
+
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -20,38 +23,45 @@ public class CollectibleManager : MonoBehaviour
         {
             Instance = this;
         }
-    }
-    
-    internal void PickUpCollectible(Collectible collectible)
-    {
-        switch (collectible.collectibleType)
-        {
-            case Collectible.CollectibleType.Iron:
-                ironAmount += collectible.ironAmount;
-                break;
-            
-            case Collectible.CollectibleType.Glass:
-                glassAmount += collectible.glassAmount;
-                break;
-            
-            case Collectible.CollectibleType.Wood:
-                woodAmount += collectible.woodAmount;
-                break;
-            
-            default:
-                return;
-        }
-    }
-    
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
         
+        collectibleCounts = new Dictionary<Collectible.CollectibleType, int>
+        {
+            { Collectible.CollectibleType.Iron, 0 },
+            { Collectible.CollectibleType.Glass, 0 },
+            { Collectible.CollectibleType.Wood, 0 }
+        };
+
+        collectiblePrefabs = new Dictionary<Collectible.CollectibleType, GameObject>
+        {
+            { Collectible.CollectibleType.Iron, ironPartPrefab },
+            { Collectible.CollectibleType.Glass, glassPartPrefab },
+            { Collectible.CollectibleType.Wood, woodPartPrefab }
+        };
     }
 
-    // Update is called once per frame
-    void Update()
+    internal void PickUpCollectible(Collectible collectible)
     {
-        
+        if (collectibleCounts.ContainsKey(collectible.collectibleType))
+        {
+            collectibleCounts[collectible.collectibleType] += collectible.amount;
+        }
+    }
+
+    public int GetCollectibleCount(Collectible.CollectibleType type)
+    {
+        return collectibleCounts.TryGetValue(type, out int count) ? count : 0;
+    }
+
+    public GameObject GetCollectiblePrefab(Collectible.CollectibleType type)
+    {
+        return collectiblePrefabs.TryGetValue(type, out GameObject prefab) ? prefab : null;
+    }
+
+    public void IncrementCollectibleCount(Collectible.CollectibleType type, int amount)
+    {
+        if (collectibleCounts.ContainsKey(type))
+        {
+            collectibleCounts[type] += amount;
+        }
     }
 }

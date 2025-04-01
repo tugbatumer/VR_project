@@ -2,9 +2,7 @@ using UnityEngine;
 
 public class Collectible : MonoBehaviour
 {
-    public int ironAmount = 5;
-    public int glassAmount = 5;
-    public int woodAmount = 5;
+    public int amount = 1;
     public CollectibleType collectibleType;
 
     public enum CollectibleType

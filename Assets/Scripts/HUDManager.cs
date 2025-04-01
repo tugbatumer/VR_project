@@ -14,11 +14,11 @@ public class HUDManager : MonoBehaviour
     public Image glassImage;
     public Image woodImage;
     
-    [Header("Potions")] 
+    [Header("Craftables")] 
+    public TextMeshProUGUI damageArrowCount;
     public TextMeshProUGUI healthPotionCount;
-    public TextMeshProUGUI sprintPotionCount;
+    public Image damageArrowImage;
     public Image healthPotionImage;
-    public Image sprintPotionImage;
     
     private void Awake()
     {
@@ -33,19 +33,17 @@ public class HUDManager : MonoBehaviour
         ironImage.sprite = Resources.Load<GameObject>("IronImage").GetComponent<SpriteRenderer>().sprite;
         glassImage.sprite = Resources.Load<GameObject>("GlassImage").GetComponent<SpriteRenderer>().sprite;
         woodImage.sprite = Resources.Load<GameObject>("WoodImage").GetComponent<SpriteRenderer>().sprite;
+        damageArrowImage.sprite = Resources.Load<GameObject>("DamageArrowImage").GetComponent<SpriteRenderer>().sprite;
+        healthPotionImage.sprite = Resources.Load<GameObject>("HealthPotionImage").GetComponent<SpriteRenderer>().sprite;
     }
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
+    
     private void Update()
     {
-        ironCount.text = $"{CollectibleManager.Instance.ironAmount}";
-        glassCount.text = $"{CollectibleManager.Instance.glassAmount}";
-        woodCount.text = $"{CollectibleManager.Instance.woodAmount}";
+        ironCount.text = $"{CollectibleManager.Instance.GetCollectibleCount(Collectible.CollectibleType.Iron)}";
+        glassCount.text = $"{CollectibleManager.Instance.GetCollectibleCount(Collectible.CollectibleType.Glass)}";
+        woodCount.text = $"{CollectibleManager.Instance.GetCollectibleCount(Collectible.CollectibleType.Wood)}";
+        damageArrowCount.text = $"{InventoryManager.Instance.GetItemCount(InventoryManager.itemType.DamageArrow)}";
+        healthPotionCount.text = $"{InventoryManager.Instance.GetItemCount(InventoryManager.itemType.HealthPotion)}";
     }
     
 }
