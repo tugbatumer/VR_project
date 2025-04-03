@@ -16,10 +16,11 @@ public class HUDManager : MonoBehaviour
     
     [Header("Craftables")] 
     public TextMeshProUGUI damageArrowCount;
+    public TextMeshProUGUI lightArrowCount;
     public TextMeshProUGUI healthPotionCount;
     public Image damageArrowImage;
+    public Image lightArrowImage;
     public Image healthPotionImage;
-    
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -35,6 +36,7 @@ public class HUDManager : MonoBehaviour
         woodImage.sprite = Resources.Load<GameObject>("WoodImage").GetComponent<SpriteRenderer>().sprite;
         damageArrowImage.sprite = Resources.Load<GameObject>("DamageArrowImage").GetComponent<SpriteRenderer>().sprite;
         healthPotionImage.sprite = Resources.Load<GameObject>("HealthPotionImage").GetComponent<SpriteRenderer>().sprite;
+        lightArrowImage.sprite = Resources.Load<GameObject>("LightArrowImage").GetComponent<SpriteRenderer>().sprite;
     }
     
     private void Update()
@@ -44,6 +46,7 @@ public class HUDManager : MonoBehaviour
         woodCount.text = $"{CollectibleManager.Instance.GetCollectibleCount(Collectible.CollectibleType.Wood)}";
         damageArrowCount.text = $"{InventoryManager.Instance.GetItemCount(InventoryManager.itemType.DamageArrow)}";
         healthPotionCount.text = $"{InventoryManager.Instance.GetItemCount(InventoryManager.itemType.HealthPotion)}";
+        lightArrowCount.text = $"{InventoryManager.Instance.GetItemCount(InventoryManager.itemType.LightArrow)}";
     }
     
 }

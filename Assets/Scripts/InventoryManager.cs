@@ -18,6 +18,7 @@ public class InventoryManager : MonoBehaviour
     public enum itemType
     {
         DamageArrow,
+        LightArrow,
         HealthPotion
 
     }
@@ -30,6 +31,7 @@ public class InventoryManager : MonoBehaviour
     private Dictionary<itemType, int> itemCounts = new Dictionary<itemType, int>
     {
         { itemType.DamageArrow, 0 },
+        { itemType.LightArrow, 0 },
         { itemType.HealthPotion, 0 }
     };
     

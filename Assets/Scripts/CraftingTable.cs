@@ -1,26 +1,21 @@
 using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine.UI;
 
 public class CraftingTable : MonoBehaviour
 {
-    [Header("Collectible Counts")] 
-    public int maxCount = 3;
+ // ← Reference to CraftingManager
+    [Header("Crafting Limits")]
+    public int maxCount = 2;
     public int totalCollectibleCount = 0;
 
-    // Use an array to hold counts for each collectible type
-    public int[] collectibleCounts;
-    
-    private Dictionary<InventoryManager.itemType, int[]> recipes = new Dictionary<InventoryManager.itemType, int[]>
-    {
-        { InventoryManager.itemType.DamageArrow,  new int[] { 1, 0, 1 }},
-        { InventoryManager.itemType.HealthPotion,  new int[] { 1, 1, 0 }}
-    };
+    [Header("Collectible Slots")]
+    public Image[] collectibleSlots;
 
-    void Awake()
-    {
-        int numTypes = System.Enum.GetValues(typeof(Collectible.CollectibleType)).Length;
-        collectibleCounts = new int[numTypes];
-    }
+    [Header("Crafted Result Preview")]
+    public Image resultPreviewSlot;
+
+    private List<Collectible.CollectibleType> insertedTypes = new();
 
     public void insertCollectible()
     {
@@ -31,50 +26,73 @@ public class CraftingTable : MonoBehaviour
             if (heldCollectible != null)
             {
                 int index = (int)heldCollectible.collectibleType;
-                collectibleCounts[index]++;
+                insertedTypes.Add(heldCollectible.collectibleType);
                 totalCollectibleCount++;
+
+                for (int i = 0; i < collectibleSlots.Length; i++)
+                {
+                    if (collectibleSlots[i].sprite == null)
+                    {
+                        collectibleSlots[i].sprite = CraftingManager.Instance.collectibleSprites[index];
+                        break;
+                    }
+                }
 
                 Destroy(InventoryManager.Instance.heldCollectible);
                 InventoryManager.Instance.heldCollectible = null;
             }
         }
+
+        if (insertedTypes.Count == 2)
+        {
+            var key = CraftingManager.SortPair(insertedTypes[0], insertedTypes[1]);
+
+            if (CraftingManager.Instance.recipes.TryGetValue(key, out var resultType))
+            {
+                resultPreviewSlot.sprite = CraftingManager.Instance.resultSprites[(int)resultType];
+            }
+            else
+            {
+                resultPreviewSlot.sprite = null;
+            }
+        }
     }
-    
+
     public void craftItem()
     {
-        foreach (KeyValuePair<InventoryManager.itemType, int[]> recipe in recipes)
+        if (insertedTypes.Count == 2)
         {
-            bool canCraft = true;
-            for (int i = 0; i < recipe.Value.Length; i++)
+            var key = CraftingManager.SortPair(insertedTypes[0], insertedTypes[1]);
+
+            if (CraftingManager.Instance.recipes.TryGetValue(key, out var result))
             {
-                if (collectibleCounts[i] != recipe.Value[i])
-                {
-                    canCraft = false;
-                    break;
-                }
+                InventoryManager.Instance.IncrementItemCount(result, 1);
             }
 
-            if (canCraft)
-            {
-                totalCollectibleCount = 0;
-                for (int i = 0; i < recipe.Value.Length; i++)
-                {
-                    collectibleCounts[i] = 0;
-                }
-
-                InventoryManager.Instance.IncrementItemCount(recipe.Key, 1);
-                break;
-            }
+            clearTable();
         }
     }
 
     public void resetTable()
     {
-        totalCollectibleCount = 0;
-        for (int i = 0; i < collectibleCounts.Length; i++)
+        foreach (var type in insertedTypes)
         {
-            CollectibleManager.Instance.IncrementCollectibleCount((Collectible.CollectibleType)i, collectibleCounts[i]);
-            collectibleCounts[i] = 0;
+            CollectibleManager.Instance.IncrementCollectibleCount(type, 1);
         }
+
+        clearTable();
+    }
+
+    private void clearTable()
+    {
+        totalCollectibleCount = 0;
+        insertedTypes.Clear();
+
+        foreach (var img in collectibleSlots)
+        {
+            img.sprite = null;
+        }
+
+        resultPreviewSlot.sprite = null;
     }
 }
