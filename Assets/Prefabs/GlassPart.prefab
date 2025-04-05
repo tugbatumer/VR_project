@@ -126,9 +126,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a950511470fbe4b7780834660aaf5293, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ironAmount: 0
-  glassAmount: 1
-  woodAmount: 0
+  amount: 1
   collectibleType: 1
 --- !u!114 &6135833532558759638
 MonoBehaviour:
@@ -163,7 +161,7 @@ MonoBehaviour:
   m_InteractionManager: {fileID: 0}
   m_Colliders: []
   m_InteractionLayers:
-    m_Bits: 1
+    m_Bits: 2
   m_DistanceCalculationMode: 1
   m_SelectMode: 0
   m_FocusMode: 1
