@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 7422747386572297202}
   - component: {fileID: 8633229171643728560}
   - component: {fileID: 2883655533032512988}
+  - component: {fileID: -163779740611937474}
   m_Layer: 8
   m_Name: Door_Middle 1
   m_TagString: Untagged
@@ -260,3 +261,15 @@ MonoBehaviour:
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
+--- !u!114 &-163779740611937474
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6316821281144846775}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e649e1e6cd1042858f32cddea703ad8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
