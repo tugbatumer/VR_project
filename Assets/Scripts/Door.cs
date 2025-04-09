@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class DoorSoundEvents : MonoBehaviour
+public class Door : MonoBehaviour
 {
     public void PlayDoorOpeningAudio()
     {

@@ -6,7 +6,13 @@ public class AudioManager : MonoBehaviour
 
     public AudioSource doorOpeningAudio;
     public AudioSource doorClosingAudio;
+    
+    public AudioSource cageDoorOpeningAudio;
 
+    public AudioSource collectItemAudio;
+    
+    public AudioSource footstepsAudio;
+    public AudioClip[] footstepsAudioClips;
     private void Awake()
     {
         if(Instance != null && Instance != this)
