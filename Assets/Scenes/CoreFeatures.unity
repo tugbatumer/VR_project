@@ -11206,7 +11206,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 0.6
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -12940,8 +12940,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterController: {fileID: 1666227634}
   gravity: 9.81
-  stepInterval: 0.2
-  minMoveThreshold: 0.01
+  stepInterval: 0.45
+  minMoveThreshold: 0.001
 --- !u!1001 &1669455978
 PrefabInstance:
   m_ObjectHideFlags: 0
