@@ -1,0 +1,45 @@
+{
+    "name": "BowAction",
+    "maps": [
+        {
+            "name": "VR_BowActions",
+            "id": "15a1f105-37a1-4255-95ae-24d04be70bd4",
+            "actions": [
+                {
+                    "name": "PullTrigger",
+                    "type": "Button",
+                    "id": "2ff01c81-8123-4b85-9840-2178670110b9",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "959f5d30-de57-42b2-a994-16f91fa88bf5",
+                    "path": "<XRController>{RightHand}/{TriggerButton}",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PullTrigger",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e5b090be-b6af-4299-974a-bb450f283d3a",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PullTrigger",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
