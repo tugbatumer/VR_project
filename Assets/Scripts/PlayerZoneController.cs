@@ -1,48 +1,60 @@
-
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit.Samples.StarterAssets;
 
 public class PlayerZoneController : MonoBehaviour
 {
-    private enum Zone { Land, Water }
+    private enum Zone
+    {
+        Land,
+        Water
+    }
 
     private Zone currentZone = Zone.Land;
 
-    private VRSwimmingController swimmingController;
+    [SerializeField] private VRSwimmingController swimmingController;
     private DynamicMoveProvider moveProvider;
-    private Rigidbody playerRb;
+
+    private XRMovementWithFootsteps footsteps;
+    // private CharacterController characterController;
+    // private SwimAudioManager swimAudioManager;
 
     private void Awake()
     {
-        swimmingController = GetComponentInChildren<VRSwimmingController>();
+        swimmingController = GetComponent<VRSwimmingController>();
         moveProvider = GetComponentInChildren<DynamicMoveProvider>();
-        playerRb = GetComponentInChildren<Rigidbody>();
+        footsteps = GetComponentInChildren<XRMovementWithFootsteps>();
+        // characterController = GetComponent<CharacterController>();
+        // swimAudioManager = GetComponentInChildren<SwimAudioManager>();
     }
-    
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
-        Debug.Log("Entered zone with tag: " + other.tag);
-        if (other.CompareTag("Water"))
+        if (other.CompareTag("Land"))
         {
-            BoxCollider waterCollider = other.GetComponent<BoxCollider>();
-            if (waterCollider != null)
+            if (currentZone != Zone.Land)
             {
-                // Calculate world Y position of the top surface of the water
+                Debug.Log("Switched to Land");
+                currentZone = Zone.Land;
+                ApplyMode();
+            }
+        }
+        else if (other.CompareTag("Water"))
+        {
+            if (currentZone != Zone.Water)
+            {
+                Debug.Log("Switched to Water");
+                currentZone = Zone.Water;
+
+
+                BoxCollider waterCollider = other.GetComponent<BoxCollider>();
+
                 float surfaceY = waterCollider.transform.position.y
                                  + waterCollider.center.y
                                  + waterCollider.size.y / 2f;
 
                 swimmingController.SetWaterSurfaceHeight(surfaceY);
+                ApplyMode();
             }
-            currentZone = Zone.Water;
-            ApplyMode();
-        }
-      
-        else if (other.CompareTag("Land"))
-        {
-            currentZone = Zone.Land;
-            ApplyMode();
         }
     }
 
@@ -53,13 +65,18 @@ public class PlayerZoneController : MonoBehaviour
             case Zone.Land:
                 swimmingController.enabled = false;
                 moveProvider.enabled = true;
-                playerRb.linearVelocity = Vector3.zero;
+                footsteps.enabled = true;
+                GetComponent<CharacterController>().enabled = true;
+                // if (swimAudioManager != null)
+                //     swimAudioManager.StopAllSounds();
                 break;
-            
+
             case Zone.Water:
-                swimmingController.enabled = true;
                 moveProvider.enabled = false;
-                playerRb.useGravity = false;
+                footsteps.enabled = false;
+                GetComponent<CharacterController>().enabled = false;
+                swimmingController.enabled = true;
+
                 break;
         }
     }

@@ -28,7 +28,7 @@ public class VRSwimmingController : MonoBehaviour
 
     [SerializeField] private float boundaryCheckDistance = 0.5f;
 
-    private Rigidbody playerBody;
+    [SerializeField] private Rigidbody playerBody;
     private float cooldownTimer;
     private Camera mainCamera;
     private float currentWaterSurfaceY;
@@ -41,7 +41,7 @@ public class VRSwimmingController : MonoBehaviour
     }
     private void Start()
     {
-        this.enabled = false; // Ensure swimming is off until triggered
+        // this.enabled = false; // Ensure swimming is off until triggered
     }
 
     private void Awake()
@@ -61,24 +61,25 @@ public class VRSwimmingController : MonoBehaviour
         
         float headY = mainCamera.transform.position.y;
         float maxAllowedHeadY = currentWaterSurfaceY + headAboveWaterThreshold;
-
+        
         Vector3 forwardDirection1 = orientationReference.forward.normalized;
+        
         if (!CanMoveInDirection(forwardDirection1))
         {
             playerBody.linearVelocity = Vector3.zero;
             cooldownTimer = 0f;
-            
         }
         
-        if (headY > maxAllowedHeadY)
+        // Debug.Log($"Head: {headY}, maxAllowedHeadY: {maxAllowedHeadY}");
+        if (headY > maxAllowedHeadY && CanMoveInDirection(forwardDirection1))
         {
             float excess = headY - maxAllowedHeadY;
 
             // Apply downward force to simulate water boundary
-            float pullStrength = Mathf.Clamp(excess * 10f, 0f, 20f);
+            float pullStrength = Mathf.Clamp(excess * 20f, 0f, 20f);
             playerBody.AddForce(Vector3.down * pullStrength, ForceMode.Acceleration);
         }
-
+        
         //Use for test without headset
         if (Keyboard.current != null)
         {
@@ -129,7 +130,7 @@ public class VRSwimmingController : MonoBehaviour
             if (combinedLocalStroke.sqrMagnitude > Math.Pow(requiredStrokeVelocity, 2))
             {
                 Vector3 swimDirection = orientationReference.TransformDirection(combinedLocalStroke);
-                if (CanMoveInDirection(swimDirection.normalized))
+                if (CanMoveInDirection(swimDirection.normalized) && !(headY > maxAllowedHeadY))
                 {
                     playerBody.AddForce(swimDirection * propulsionStrength, ForceMode.Acceleration);
                     cooldownTimer = 0f;
@@ -150,13 +151,30 @@ public class VRSwimmingController : MonoBehaviour
         
     }
 
-
     private bool CanMoveInDirection(Vector3 direction)
     {
-        if (Physics.Raycast(transform.position, direction, boundaryCheckDistance, waterBoundariesLayer))
+        float checkRadius = 0.3f;
+        float checkDistance = boundaryCheckDistance;
+
+        if (Physics.SphereCast(transform.position, checkRadius, direction, out RaycastHit hit, checkDistance, waterBoundariesLayer))
         {
-            return false;
+            // ✅ Check angle between movement direction and hit surface normal
+            float angle = Vector3.Angle(direction, hit.normal);
+            if (angle > 75f) // Mostly head-on hit → block
+                return false;
+            else
+                return true; // Grazing or stair-like → allow
         }
+
         return true;
     }
+
+    // private bool CanMoveInDirection(Vector3 direction)
+    // {
+    //     if (Physics.Raycast(transform.position, direction, boundaryCheckDistance, waterBoundariesLayer))
+    //     {
+    //         return false;
+    //     }
+    //     return true;
+    // }
 }
