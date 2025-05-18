@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Random = UnityEngine.Random;
 
 public class VRSwimmingController : MonoBehaviour
 {
@@ -39,6 +40,12 @@ public class VRSwimmingController : MonoBehaviour
     {
         currentWaterSurfaceY = surfaceY;
     }
+    
+    void PlayFootstepAudio()
+    {
+        int index = Random.Range(0, AudioManager.Instance.footstepsAudioClips.Length);
+        AudioManager.Instance.footstepsAudio.PlayOneShot(AudioManager.Instance.footstepsAudioClips[index]);
+    }
     private void Start()
     {
         // this.enabled = false; // Ensure swimming is off until triggered
@@ -50,6 +57,18 @@ public class VRSwimmingController : MonoBehaviour
         playerBody = GetComponent<Rigidbody>();
         playerBody.useGravity = false;
         playerBody.constraints = RigidbodyConstraints.FreezeRotation;
+    }
+
+    public void Enable()
+    {
+        playerBody.isKinematic = false;
+        this.enabled = true;
+    }
+    
+    public void Disable()
+    {
+        playerBody.isKinematic = true;
+        this.enabled = false;
     }
     
     private void FixedUpdate()

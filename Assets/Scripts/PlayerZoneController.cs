@@ -63,7 +63,7 @@ public class PlayerZoneController : MonoBehaviour
         switch (currentZone)
         {
             case Zone.Land:
-                swimmingController.enabled = false;
+                swimmingController.Enable();
                 moveProvider.enabled = true;
                 footsteps.enabled = true;
                 GetComponent<CharacterController>().enabled = true;
@@ -75,8 +75,7 @@ public class PlayerZoneController : MonoBehaviour
                 moveProvider.enabled = false;
                 footsteps.enabled = false;
                 GetComponent<CharacterController>().enabled = false;
-                swimmingController.enabled = true;
-
+                swimmingController.Disable();
                 break;
         }
     }

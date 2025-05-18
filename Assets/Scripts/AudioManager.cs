@@ -13,6 +13,8 @@ public class AudioManager : MonoBehaviour
     
     public AudioSource footstepsAudio;
     public AudioClip[] footstepsAudioClips;
+    
+    
     private void Awake()
     {
         if(Instance != null && Instance != this)

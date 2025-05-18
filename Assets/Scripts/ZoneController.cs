@@ -27,14 +27,14 @@ public class ZoneController : MonoBehaviour
         if (currentZone == Zone.ZoneType.Water)
         {
             swimmingController.SetWaterSurfaceHeight((float)surfaceY);
-            swimmingController.enabled = true;
+            swimmingController.Enable();
             moveProvider.enabled = false;
             footsteps.enabled = false;
             characterController.enabled = false;
         }
         else // Land
         {
-            swimmingController.enabled = false;
+            swimmingController.Disable();
             moveProvider.enabled = true;
             footsteps.enabled = true;
             characterController.enabled = true;
