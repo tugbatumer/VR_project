@@ -25,7 +25,6 @@ public class Zone : MonoBehaviour
     private float GetSurface()
     {
         return boxCollider.transform.position.y
-                         + boxCollider.center.y
-                         + boxCollider.size.y / 2f;
+               + (boxCollider.center.y + boxCollider.size.y / 2f) * boxCollider.transform.lossyScale.y;;
     }
 }

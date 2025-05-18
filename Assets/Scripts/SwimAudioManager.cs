@@ -1,40 +1,29 @@
 using UnityEngine;
 
-public class SwimSound : MonoBehaviour
+public class SwimAudioManager : MonoBehaviour
 {
-    [Header("Audio Source")] [SerializeField]
-    private AudioSource audioSource;
-
-    [Header("Swim Sounds")] [SerializeField]
-    private AudioClip swimStrokeSound;
-
-    [SerializeField] private AudioClip underwaterLoop;
-    [SerializeField] private AudioClip surfaceLoop;
-
-    private bool isUnderwater;
-    private bool isLoopPlaying;
-
-    public void PlaySwimStroke()
+    public void PlaySurfaceSwim()
     {
-        if (swimStrokeSound != null)
-            audioSource.PlayOneShot(swimStrokeSound);
+        AudioManager.Instance.surfaceSwimAudio.Play();
     }
-
-    public void UpdateAmbientLoop(bool currentlyUnderwater)
+    
+    public void PlayUnderwater()
     {
-        if (currentlyUnderwater != isUnderwater || !isLoopPlaying)
-        {
-            isUnderwater = currentlyUnderwater;
-            audioSource.loop = true;
-            audioSource.clip = isUnderwater ? underwaterLoop : surfaceLoop;
-            audioSource.Play();
-            isLoopPlaying = true;
-        }
+        //AudioManager.Instance.underwaterAudio.loop = true;
+        AudioManager.Instance.underwaterAudio.Play();
+     
     }
-
-    public void StopAllSounds()
+    
+    public void StopUnderwater()
     {
-        audioSource.Stop();
-        isLoopPlaying = false;
+        AudioManager.Instance.underwaterAudio.Stop();
     }
+    
+    public void PlayUnderwaterSwim()
+    {
+        int index = Random.Range(0, AudioManager.Instance.underwaterSwimClips.Length);
+        AudioManager.Instance.surfaceSwimAudio.PlayOneShot(AudioManager.Instance.underwaterSwimClips[index]);
+    }
+    
+
 }

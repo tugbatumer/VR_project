@@ -16,13 +16,12 @@ public class VRSwimmingController : MonoBehaviour
     private InputActionReference leftHandGripInput;
 
     [SerializeField] private InputActionReference leftHandVelocityInput;
-
     [SerializeField] private InputActionReference rightHandGripInput;
     [SerializeField] private InputActionReference rightHandVelocityInput;
 
 
     [Header("References")] [SerializeField]
-    private Transform orientationReference; // Usually XR Rig or Camera Offset
+    private Transform orientationReference;
 
     [Header("Boundary Settings")] [SerializeField]
     private LayerMask waterBoundariesLayer;
@@ -33,19 +32,23 @@ public class VRSwimmingController : MonoBehaviour
     private float cooldownTimer;
     private Camera mainCamera;
     private float currentWaterSurfaceY;
-    
+
     [SerializeField] private float headAboveWaterThreshold = 0.3f;
+    [SerializeField] private SwimAudioManager audio;
+
+    private bool isUnderwater = false;
 
     public void SetWaterSurfaceHeight(float surfaceY)
     {
         currentWaterSurfaceY = surfaceY;
     }
-    
+
     void PlayFootstepAudio()
     {
         int index = Random.Range(0, AudioManager.Instance.footstepsAudioClips.Length);
         AudioManager.Instance.footstepsAudio.PlayOneShot(AudioManager.Instance.footstepsAudioClips[index]);
     }
+
     private void Start()
     {
         // this.enabled = false; // Ensure swimming is off until triggered
@@ -64,32 +67,44 @@ public class VRSwimmingController : MonoBehaviour
         playerBody.isKinematic = false;
         this.enabled = true;
     }
-    
+
     public void Disable()
     {
         playerBody.isKinematic = true;
         this.enabled = false;
     }
-    
+
     private void FixedUpdate()
     {
         cooldownTimer += Time.fixedDeltaTime;
-    
+
         bool isLeftGripping = leftHandGripInput.action.IsPressed();
         bool isRightGripping = rightHandGripInput.action.IsPressed();
-        
+
         float headY = mainCamera.transform.position.y;
         float maxAllowedHeadY = currentWaterSurfaceY + headAboveWaterThreshold;
-        
+
         Vector3 forwardDirection1 = orientationReference.forward.normalized;
-        
+
+        //is underwater
+        if (headY < currentWaterSurfaceY && !isUnderwater)
+        {
+            audio.PlayUnderwater();
+            isUnderwater = true;
+        }
+        else if (headY > currentWaterSurfaceY && isUnderwater)
+        {
+            audio.StopUnderwater();
+            isUnderwater = false;
+        }
+
         if (!CanMoveInDirection(forwardDirection1))
         {
             playerBody.linearVelocity = Vector3.zero;
             cooldownTimer = 0f;
         }
-        
-        // Debug.Log($"Head: {headY}, maxAllowedHeadY: {maxAllowedHeadY}");
+
+        //Debug.Log($"Underwater {nowUnderwater}, Head: {headY}, currentWaterSurfaceY: {currentWaterSurfaceY}");
         if (headY > maxAllowedHeadY && CanMoveInDirection(forwardDirection1))
         {
             float excess = headY - maxAllowedHeadY;
@@ -98,7 +113,7 @@ public class VRSwimmingController : MonoBehaviour
             float pullStrength = Mathf.Clamp(excess * 20f, 0f, 20f);
             playerBody.AddForce(Vector3.down * pullStrength, ForceMode.Acceleration);
         }
-        
+
         //Use for test without headset
         if (Keyboard.current != null)
         {
@@ -127,6 +142,7 @@ public class VRSwimmingController : MonoBehaviour
                 Vector3 direction = moveDirection.normalized;
                 if (CanMoveInDirection(direction))
                 {
+                    //PlaySwim();
                     playerBody.AddForce(direction * propulsionStrength, ForceMode.Acceleration);
                 }
                 else
@@ -137,20 +153,21 @@ public class VRSwimmingController : MonoBehaviour
                 }
             }
         }
-        
-        
+
+
         if (cooldownTimer > strokeCooldown && isLeftGripping && isRightGripping)
         {
             Vector3 leftVelocity = leftHandVelocityInput.action.ReadValue<Vector3>();
             Vector3 rightVelocity = rightHandVelocityInput.action.ReadValue<Vector3>();
-    
+
             Vector3 combinedLocalStroke = -(leftVelocity + rightVelocity);
-    
+
             if (combinedLocalStroke.sqrMagnitude > Math.Pow(requiredStrokeVelocity, 2))
             {
                 Vector3 swimDirection = orientationReference.TransformDirection(combinedLocalStroke);
                 if (CanMoveInDirection(swimDirection.normalized) && !(headY > maxAllowedHeadY))
                 {
+                    PlaySwim();
                     playerBody.AddForce(swimDirection * propulsionStrength, ForceMode.Acceleration);
                     cooldownTimer = 0f;
                 }
@@ -159,15 +176,13 @@ public class VRSwimmingController : MonoBehaviour
                     playerBody.linearVelocity = Vector3.zero;
                     cooldownTimer = 0f;
                 }
-                
             }
         }
-        
+
         if (playerBody.linearVelocity.sqrMagnitude > 0.01f)
         {
             playerBody.AddForce(-playerBody.linearVelocity * waterDrag, ForceMode.Acceleration);
         }
-        
     }
 
     private bool CanMoveInDirection(Vector3 direction)
@@ -175,17 +190,27 @@ public class VRSwimmingController : MonoBehaviour
         float checkRadius = 0.3f;
         float checkDistance = boundaryCheckDistance;
 
-        if (Physics.SphereCast(transform.position, checkRadius, direction, out RaycastHit hit, checkDistance, waterBoundariesLayer))
+        if (Physics.SphereCast(transform.position, checkRadius, direction, out RaycastHit hit, checkDistance,
+                waterBoundariesLayer))
         {
-            // ✅ Check angle between movement direction and hit surface normal
+            // Check angle between movement direction and hit surface normal
             float angle = Vector3.Angle(direction, hit.normal);
-            if (angle > 75f) // Mostly head-on hit → block
+            if (angle > 75f)
                 return false;
             else
-                return true; // Grazing or stair-like → allow
+                return true;
         }
 
         return true;
+    }
+
+
+    private void PlaySwim()
+    {
+        if(isUnderwater)
+            audio.PlayUnderwaterSwim();
+        else
+            audio.PlaySurfaceSwim();
     }
 
     // private bool CanMoveInDirection(Vector3 direction)
