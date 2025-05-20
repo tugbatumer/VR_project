@@ -21,6 +21,9 @@ public class HUDManager : MonoBehaviour
     public Image damageArrowImage;
     public Image lightArrowImage;
     public Image healthPotionImage;
+    
+    [Header("Oxygen UI")]
+    public Image oxygenBar;
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -47,6 +50,22 @@ public class HUDManager : MonoBehaviour
         damageArrowCount.text = $"{InventoryManager.Instance.GetItemCount(InventoryManager.itemType.DamageArrow)}";
         healthPotionCount.text = $"{InventoryManager.Instance.GetItemCount(InventoryManager.itemType.HealthPotion)}";
         lightArrowCount.text = $"{InventoryManager.Instance.GetItemCount(InventoryManager.itemType.LightArrow)}";
+    }
+
+    public void UpdateOxygenBar(float fillAmount)
+    {
+        if (oxygenBar)
+        {
+            oxygenBar.fillAmount = Mathf.Clamp01(fillAmount);
+        }
+    }
+
+    public void ShowOxygenBar(bool show)
+    {
+        if (oxygenBar)
+        {
+            oxygenBar.gameObject.SetActive(show);
+        }
     }
     
 }

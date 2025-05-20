@@ -35,6 +35,7 @@ public class VRSwimmingController : MonoBehaviour
 
     [SerializeField] private float headAboveWaterThreshold = 0.3f;
     [SerializeField] private SwimAudioManager audio;
+    [SerializeField] private OxygenManager oxygenManager;
 
     private bool isUnderwater = false;
 
@@ -62,10 +63,14 @@ public class VRSwimmingController : MonoBehaviour
         playerBody.constraints = RigidbodyConstraints.FreezeRotation;
     }
 
-    public void Enable()
+    public void Enable(float? surfaceY)
     {
         playerBody.isKinematic = false;
         this.enabled = true;
+        if (surfaceY is not null)
+            SetWaterSurfaceHeight((float)surfaceY);
+            
+        
     }
 
     public void Disable()
@@ -91,10 +96,12 @@ public class VRSwimmingController : MonoBehaviour
         {
             audio.PlayUnderwater();
             isUnderwater = true;
+            oxygenManager.isUnderwater = true;
         }
         else if (headY > currentWaterSurfaceY && isUnderwater)
         {
             audio.StopUnderwater();
+            oxygenManager.isUnderwater = false;
             isUnderwater = false;
         }
 
@@ -203,8 +210,7 @@ public class VRSwimmingController : MonoBehaviour
 
         return true;
     }
-
-
+    
     private void PlaySwim()
     {
         if(isUnderwater)
@@ -212,13 +218,5 @@ public class VRSwimmingController : MonoBehaviour
         else
             audio.PlaySurfaceSwim();
     }
-
-    // private bool CanMoveInDirection(Vector3 direction)
-    // {
-    //     if (Physics.Raycast(transform.position, direction, boundaryCheckDistance, waterBoundariesLayer))
-    //     {
-    //         return false;
-    //     }
-    //     return true;
-    // }
+    
 }

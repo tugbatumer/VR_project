@@ -9,6 +9,7 @@ public class ZoneController : MonoBehaviour
     [SerializeField] private DynamicMoveProvider moveProvider;
     [SerializeField] private XRMovementWithFootsteps footsteps;
     [SerializeField] private CharacterController characterController;
+    [SerializeField] private OxygenManager oxygenManager;
 
     private Zone.ZoneType currentZone = Zone.ZoneType.Land;
 
@@ -26,11 +27,11 @@ public class ZoneController : MonoBehaviour
 
         if (currentZone == Zone.ZoneType.Water)
         {
-            swimmingController.SetWaterSurfaceHeight((float)surfaceY);
-            swimmingController.Enable();
+            swimmingController.Enable(surfaceY);
             moveProvider.enabled = false;
             footsteps.enabled = false;
             characterController.enabled = false;
+            
         }
         else // Land
         {
