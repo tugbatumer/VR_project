@@ -13,6 +13,12 @@ public class AudioManager : MonoBehaviour
     
     public AudioSource footstepsAudio;
     public AudioClip[] footstepsAudioClips;
+    
+    public AudioSource surfaceSwimAudio;
+    public AudioSource underwaterAudio;
+    public AudioClip[] underwaterSwimClips;
+    
+    
     private void Awake()
     {
         if(Instance != null && Instance != this)
@@ -24,4 +30,5 @@ public class AudioManager : MonoBehaviour
             Instance = this;
         }
     }
+    
 }

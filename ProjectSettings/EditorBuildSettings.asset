@@ -5,11 +5,17 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/SampleScene.unity
     guid: 99c9720ab356a0642a771bea13969a05
+  - enabled: 0
+    path: Assets/Scenes/CoreFeatures_swimming.unity
+    guid: b9fc6c077e7de453983728668fe403e4
+  - enabled: 1
+    path: Assets/Scenes/Final.unity
+    guid: 5ba1a6b388ad945a98f7a2389bc58e39
   m_configObjects:
-    com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+    com.unity.input.settings.actions: {fileID: -944628639613478452, guid: c348712bda248c246b8c49b3db54643f, type: 3}
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: d8d4100ebaeb247ed896a648a81a3aaf, type: 2}
     com.unity.xr.openxr.settings4: {fileID: 11400000, guid: 916652fe4206541fead153a2f42a9611, type: 2}
   m_UseUCBPForAssetBundles: 0
