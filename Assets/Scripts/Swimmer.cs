@@ -81,7 +81,7 @@ public class VRSwimmingController : MonoBehaviour
         Vector3 forwardDirection1 = orientationReference.forward.normalized;
 
         //is underwater
-        if (headY < currentWaterSurfaceY && !isUnderwater)
+        if (headY < currentWaterSurfaceY - 0.5 && !isUnderwater)
         {
             audio.PlayUnderwater();
             isUnderwater = true;
