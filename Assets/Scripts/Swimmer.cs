@@ -44,17 +44,6 @@ public class VRSwimmingController : MonoBehaviour
         currentWaterSurfaceY = surfaceY;
     }
 
-    void PlayFootstepAudio()
-    {
-        int index = Random.Range(0, AudioManager.Instance.footstepsAudioClips.Length);
-        AudioManager.Instance.footstepsAudio.PlayOneShot(AudioManager.Instance.footstepsAudioClips[index]);
-    }
-
-    private void Start()
-    {
-        // this.enabled = false; // Ensure swimming is off until triggered
-    }
-
     private void Awake()
     {
         mainCamera = Camera.main;
@@ -115,7 +104,8 @@ public class VRSwimmingController : MonoBehaviour
         if (headY > maxAllowedHeadY && CanMoveInDirection(forwardDirection1))
         {
             float excess = headY - maxAllowedHeadY;
-
+            
+            Debug.Log("Apply surface force");
             // Apply downward force to simulate water boundary
             float pullStrength = Mathf.Clamp(excess * 20f, 0f, 20f);
             playerBody.AddForce(Vector3.down * pullStrength, ForceMode.Acceleration);
