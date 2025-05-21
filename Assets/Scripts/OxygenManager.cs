@@ -24,6 +24,13 @@ public class OxygenManager : MonoBehaviour
         HUDManager.Instance?.UpdateOxygenBar(currentOxygen);
         HUDManager.Instance?.ShowOxygenBar(false);
     }
+    
+    public void IncreaseOxygen(float amount)
+    {
+        currentOxygen += amount;
+        currentOxygen = Mathf.Clamp01(currentOxygen);
+        HUDManager.Instance.UpdateOxygenBar(currentOxygen);
+    }
 
     private void Update()
     {
