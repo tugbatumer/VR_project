@@ -18,5 +18,6 @@ public class StartScreenManager : MonoBehaviour
         locomotionSystem.SetActive(true);
         hudCanvas.SetActive(true);
         startCanvas.SetActive(false); 
+        FindFirstObjectByType<TutorialManager>().ShowTutorial("Oh no you are trapped! Maybe there is a key somewhere.");
     }
 }
