@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.XR.Interaction.Toolkit;
 using Random = UnityEngine.Random;
 
 public class VRSwimmingController : MonoBehaviour
@@ -37,6 +38,13 @@ public class VRSwimmingController : MonoBehaviour
     [SerializeField] private SwimAudioManager audio;
     [SerializeField] private OxygenManager oxygenManager;
 
+    
+    [Header("Haptics")]
+    [SerializeField] private XRBaseController leftController;
+    [SerializeField] private XRBaseController rightController;
+    [SerializeField] private float hapticIntensity = 0.5f;
+    [SerializeField] private float hapticDuration = 0.2f;
+    
     private bool isUnderwater = false;
 
     public void SetWaterSurfaceHeight(float surfaceY)
@@ -165,6 +173,7 @@ public class VRSwimmingController : MonoBehaviour
                 if (CanMoveInDirection(swimDirection.normalized) && !(headY > maxAllowedHeadY))
                 {
                     PlaySwim();
+                    SendHapticImpulse();
                     playerBody.AddForce(swimDirection * propulsionStrength, ForceMode.Acceleration);
                     cooldownTimer = 0f;
                 }
@@ -200,6 +209,16 @@ public class VRSwimmingController : MonoBehaviour
 
         return true;
     }
+    
+    private void SendHapticImpulse()
+    {
+        if (leftController && rightController)
+        {
+            leftController.SendHapticImpulse(hapticIntensity, hapticDuration);
+            rightController.SendHapticImpulse(hapticIntensity, hapticDuration);
+        }
+    }
+
     
     private void PlaySwim()
     {
