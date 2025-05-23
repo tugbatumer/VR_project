@@ -1,0 +1,5 @@
+/Users/tugba/Desktop/EPFL/cs444-vr/VR_project/.utmp/RelWithDebInfo/214g1j27/arm64-v8a/CMakeFiles/edit_cache.dir
+/Users/tugba/Desktop/EPFL/cs444-vr/VR_project/.utmp/RelWithDebInfo/214g1j27/arm64-v8a/CMakeFiles/rebuild_cache.dir
+/Users/tugba/Desktop/EPFL/cs444-vr/VR_project/.utmp/RelWithDebInfo/214g1j27/arm64-v8a/GameActivity/CMakeFiles/game.dir
+/Users/tugba/Desktop/EPFL/cs444-vr/VR_project/.utmp/RelWithDebInfo/214g1j27/arm64-v8a/GameActivity/CMakeFiles/edit_cache.dir
+/Users/tugba/Desktop/EPFL/cs444-vr/VR_project/.utmp/RelWithDebInfo/214g1j27/arm64-v8a/GameActivity/CMakeFiles/rebuild_cache.dir

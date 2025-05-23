@@ -1016,7 +1016,7 @@
                 {
                     "name": "ShootArrow",
                     "type": "Button",
-                    "id": "cd8125d3-8996-4ad2-921a-3f22b2eb362f",
+                    "id": "4b264b8e-1491-4712-b759-a108a892011c",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -1070,8 +1070,8 @@
                 },
                 {
                     "name": "",
-                    "id": "ef2e46a7-d61e-441d-a615-b2698487b4cc",
-                    "path": "<Keyboard>/k",
+                    "id": "708d6c64-e47a-426c-8c6b-b6140448f54e",
+                    "path": "<Keyboard>/p",
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
@@ -1081,8 +1081,8 @@
                 },
                 {
                     "name": "",
-                    "id": "11d412c4-1b6f-4c85-8ea6-a9ddcf4659e2",
-                    "path": "<XRController>{LeftHand}/{PrimaryButton}",
+                    "id": "5018fcf0-0783-4265-b192-643cad6108e8",
+                    "path": "<XRController>{LeftHand}/{SecondaryButton}",
                     "interactions": "",
                     "processors": "",
                     "groups": ";XR",
@@ -1092,11 +1092,11 @@
                 },
                 {
                     "name": "",
-                    "id": "a46f0881-a68e-4141-b2b7-6fdf6aabe0b3",
-                    "path": "<XRController>{RightHand}/{PrimaryButton}",
+                    "id": "2bbf0abb-517e-4cd7-9da0-e29124019c2d",
+                    "path": "<XRController>{RightHand}/{SecondaryButton}",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": ";XR",
                     "action": "ShootArrow",
                     "isComposite": false,
                     "isPartOfComposite": false

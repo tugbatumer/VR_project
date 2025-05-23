@@ -8,6 +8,8 @@ public class BowController : MonoBehaviour
     public Transform stringRestPosition;
     public Transform stringPullLimit;
     public Transform stringBone;
+    public Transform topLimit;
+    public Transform bottomLimit;
     public Transform arrowNockPoint;
     public GameObject arrowPrefab;
 
@@ -55,6 +57,8 @@ public class BowController : MonoBehaviour
             
 
             stringBone.position = stringRestPosition.position + pullDir * pullAmount;
+            topLimit.localRotation = Quaternion.Euler(pullAmount * -15f, 0f, 0f);
+            bottomLimit.localRotation = Quaternion.Euler(pullAmount * 15f, 0f, 0f);
             currentArrow.transform.position = arrowNockPoint.position + pullDir * pullAmount;
             currentArrow.transform.rotation = arrowNockPoint.rotation;
 
@@ -113,7 +117,9 @@ public class BowController : MonoBehaviour
         Rigidbody rb = currentArrow.GetComponent<Rigidbody>();
         rb.isKinematic = false;
         rb.useGravity = true;
-        rb.linearVelocity = arrowNockPoint.forward * pullAmount * shootForceMultiplier;
+        rb.AddForce(arrowNockPoint.forward * pullAmount * shootForceMultiplier, ForceMode.Impulse);
+        Debug.Log(arrowNockPoint.forward * pullAmount * shootForceMultiplier);
+        Debug.DrawRay(arrowNockPoint.position, arrowNockPoint.forward * 2f, Color.red, 2f);
 
         currentArrow = null;
         pullingHand = null;
