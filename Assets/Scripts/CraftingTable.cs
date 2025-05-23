@@ -25,21 +25,18 @@ public class CraftingTable : MonoBehaviour
 
             if (heldCollectible != null)
             {
+                AudioManager.Instance.insertCollectibleAudio.Play();
+                
                 int index = (int)heldCollectible.collectibleType;
                 insertedTypes.Add(heldCollectible.collectibleType);
+                
+                collectibleSlots[totalCollectibleCount].sprite = CraftingManager.Instance.collectibleSprites[index];
                 totalCollectibleCount++;
-
-                for (int i = 0; i < collectibleSlots.Length; i++)
-                {
-                    if (collectibleSlots[i].sprite == null)
-                    {
-                        collectibleSlots[i].sprite = CraftingManager.Instance.collectibleSprites[index];
-                        break;
-                    }
-                }
 
                 Destroy(InventoryManager.Instance.heldCollectible);
                 InventoryManager.Instance.heldCollectible = null;
+                
+                CraftingUIManager.Instance.ShowCraftingPanel();
             }
         }
 
@@ -53,7 +50,7 @@ public class CraftingTable : MonoBehaviour
             }
             else
             {
-                resultPreviewSlot.sprite = null;
+                resultPreviewSlot.sprite = CraftingManager.Instance.xSprite;
             }
         }
     }
@@ -67,20 +64,28 @@ public class CraftingTable : MonoBehaviour
             if (CraftingManager.Instance.recipes.TryGetValue(key, out var result))
             {
                 InventoryManager.Instance.IncrementItemCount(result, 1);
+                AudioManager.Instance.craftingSuccessAudio.Play();
             }
 
             clearTable();
+            
+            CraftingUIManager.Instance.ShowRecipesPanel();
         }
+        
     }
 
     public void resetTable()
     {
+        AudioManager.Instance.resetButtonAudio.Play();
+        
         foreach (var type in insertedTypes)
         {
             CollectibleManager.Instance.IncrementCollectibleCount(type, 1);
         }
-
+        
         clearTable();
+        
+        CraftingUIManager.Instance.ShowRecipesPanel();
     }
 
     private void clearTable()
@@ -90,9 +95,9 @@ public class CraftingTable : MonoBehaviour
 
         foreach (var img in collectibleSlots)
         {
-            img.sprite = null;
+            img.sprite = CraftingManager.Instance.transparentSprite;
         }
 
-        resultPreviewSlot.sprite = null;
+        resultPreviewSlot.sprite = CraftingManager.Instance.transparentSprite;
     }
 }

@@ -1,6 +1,8 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.XR.Interaction.Toolkit;
+using UnityEngine.XR.Interaction.Toolkit.Interactables;
+using UnityEngine.XR.Interaction.Toolkit.Interactors;
 
 public class BowController : MonoBehaviour
 {
@@ -12,11 +14,7 @@ public class BowController : MonoBehaviour
     public Transform bottomLimit;
     public Transform arrowNockPoint;
     public GameObject arrowPrefab;
-
-    [Header("Hand Transforms")]
-    public Transform leftHand;
-    public Transform rightHand;
-
+    
     [Header("Input Actions")]
     public InputActionReference leftTriggerAction;
     public InputActionReference rightTriggerAction;
@@ -24,12 +22,20 @@ public class BowController : MonoBehaviour
     [Header("Settings")]
     public float attachDistance = 0.15f;
     public float shootForceMultiplier = 50f;
+    public Transform pullingHand;
+    public Transform otherHand;
+    public Transform leftHand;
+    public Transform rightHand;
 
-    private Transform bowHand;
-    private Transform pullingHand;
-    private Transform otherHand;
+    public Transform bowHand;
+
     private GameObject currentArrow;
     private float maxPullDistance;
+    private float pullAmount = 0;
+    
+    public XRBaseInteractor handInteractor;
+    public XRGrabInteractable grabInteractable;
+    
 
     void Start()
     {
@@ -52,7 +58,7 @@ public class BowController : MonoBehaviour
         if (pullingHand && currentArrow)
         {
             Vector3 pullDir = (stringPullLimit.position - stringRestPosition.position).normalized;
-            float pullAmount = Vector3.Dot(pullingHand.position - stringRestPosition.position, pullDir);
+            pullAmount = Vector3.Dot(pullingHand.position - stringRestPosition.position, pullDir);
             pullAmount = Mathf.Clamp(pullAmount, 0, maxPullDistance);
             
 
@@ -61,11 +67,6 @@ public class BowController : MonoBehaviour
             bottomLimit.localRotation = Quaternion.Euler(pullAmount * 15f, 0f, 0f);
             currentArrow.transform.position = arrowNockPoint.position + pullDir * pullAmount;
             currentArrow.transform.rotation = arrowNockPoint.rotation;
-
-            if (IsTriggerHeld(pullingHand))
-            {
-                FireArrow(pullAmount);
-            }
         }
     }
 
@@ -110,9 +111,9 @@ public class BowController : MonoBehaviour
         currentArrow.transform.Rotate(0, 180f, 0);
     }
 
-    private void FireArrow(float pullAmount)
+    public void FireArrow()
     {
-        if (!currentArrow) return;
+        if (!currentArrow || pullAmount == 0) return;
 
         Rigidbody rb = currentArrow.GetComponent<Rigidbody>();
         rb.isKinematic = false;
@@ -135,4 +136,11 @@ public class BowController : MonoBehaviour
         return false;
     }
     
+    public void ForceGrab()
+    {
+        if (grabInteractable && handInteractor)
+        {
+            handInteractor.interactionManager.SelectEnter((IXRSelectInteractor)handInteractor, grabInteractable);
+        }
+    }
 }

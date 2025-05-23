@@ -6,12 +6,15 @@ public class CollectibleManager : MonoBehaviour
     public static CollectibleManager Instance { get; set; }
 
     [Header("Collectibles")]
-    public GameObject ironPartPrefab;
-    public GameObject glassPartPrefab;
+    public GameObject crystalPartPrefab;
+    public GameObject featherPartPrefab;
     public GameObject woodPartPrefab;
+    public GameObject puzzleKeyPartPrefab;
 
     private Dictionary<Collectible.CollectibleType, int> collectibleCounts;
     private Dictionary<Collectible.CollectibleType, GameObject> collectiblePrefabs;
+
+    public bool hasPuzzleKey = false;
 
     private void Awake()
     {
@@ -26,16 +29,17 @@ public class CollectibleManager : MonoBehaviour
         
         collectibleCounts = new Dictionary<Collectible.CollectibleType, int>
         {
-            { Collectible.CollectibleType.Iron, 0 },
-            { Collectible.CollectibleType.Glass, 0 },
+            { Collectible.CollectibleType.Crystal, 0 },
+            { Collectible.CollectibleType.Feather, 0 },
             { Collectible.CollectibleType.Wood, 0 }
         };
 
         collectiblePrefabs = new Dictionary<Collectible.CollectibleType, GameObject>
         {
-            { Collectible.CollectibleType.Iron, ironPartPrefab },
-            { Collectible.CollectibleType.Glass, glassPartPrefab },
-            { Collectible.CollectibleType.Wood, woodPartPrefab }
+            { Collectible.CollectibleType.Crystal, crystalPartPrefab },
+            { Collectible.CollectibleType.Feather, featherPartPrefab },
+            { Collectible.CollectibleType.Wood, woodPartPrefab },
+            { Collectible.CollectibleType.PuzzleKey, puzzleKeyPartPrefab } // Assuming PuzzleKey doesn't have a prefab
         };
     }
 
@@ -44,6 +48,11 @@ public class CollectibleManager : MonoBehaviour
         if (collectibleCounts.ContainsKey(collectible.collectibleType))
         {
             collectibleCounts[collectible.collectibleType] += collectible.amount;
+        }
+        
+        else if (collectible.collectibleType == Collectible.CollectibleType.PuzzleKey)
+        {
+            hasPuzzleKey = true;
         }
     }
 

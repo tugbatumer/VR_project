@@ -200,9 +200,9 @@ GameObject:
   - component: {fileID: 5970128868087986871}
   - component: {fileID: 3141186383533773217}
   - component: {fileID: 1237450382052905333}
-  - component: {fileID: 7461477510967538954}
   - component: {fileID: 1108638454822838445}
   - component: {fileID: 33697871914318952}
+  - component: {fileID: -4159260099269577370}
   m_Layer: 0
   m_Name: Bow
   m_TagString: Untagged
@@ -344,7 +344,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!114 &1237450382052905333
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -359,7 +359,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_InteractionManager: {fileID: 0}
   m_Colliders:
-  - {fileID: 7461477510967538954}
+  - {fileID: -4159260099269577370}
   m_InteractionLayers:
     m_Bits: 1
   m_DistanceCalculationMode: 1
@@ -516,27 +516,6 @@ MonoBehaviour:
   m_StartingMultipleGrabTransformers: []
   m_AddDefaultGrabTransformers: 1
   m_FarAttachMode: 1
---- !u!65 &7461477510967538954
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1069287170102652290}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.059122086, y: 0.037373222, z: 0.23831873}
-  m_Center: {x: 0.004011595, y: 0.000008405747, z: 0.010623309}
 --- !u!114 &1108638454822838445
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -574,12 +553,38 @@ MonoBehaviour:
   bottomLimit: {fileID: 1819054515396709527}
   arrowNockPoint: {fileID: 8650650132461285111}
   arrowPrefab: {fileID: 1090294989903236426, guid: 679af19e1a8f04365a621afcec22066e, type: 3}
-  leftHand: {fileID: 0}
-  rightHand: {fileID: 0}
   leftTriggerAction: {fileID: 5663353858250436809, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   rightTriggerAction: {fileID: 5663353858250436809, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   attachDistance: 0.15
   shootForceMultiplier: 50
+  pullingHand: {fileID: 0}
+  otherHand: {fileID: 0}
+  leftHand: {fileID: 0}
+  rightHand: {fileID: 0}
+  bowHand: {fileID: 0}
+  handInteractor: {fileID: 0}
+  grabInteractable: {fileID: 1237450382052905333}
+--- !u!65 &-4159260099269577370
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1069287170102652290}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.27574232, y: 0.037373275, z: 1.146087}
+  m_Center: {x: -0.053912025, y: -0.000008406022, z: 0.023292398}
 --- !u!1 &1255141158576286550
 GameObject:
   m_ObjectHideFlags: 0

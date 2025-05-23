@@ -5,6 +5,8 @@ using System.Linq;
 
 public class CraftingUIManager : MonoBehaviour
 {
+    public static CraftingUIManager Instance { get; set; }
+    
     [Header("Tab Panels")]
     public GameObject craftingPanel;
     public GameObject recipesPanel;
@@ -34,7 +36,19 @@ public class CraftingUIManager : MonoBehaviour
 
     private int currentPage = 0;
     private const int recipesPerPage = 2;
-    
+
+    private void Awake()
+    {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            Instance = this;
+        }
+    }
+
     void Start()
     {
         recipes = CraftingManager.Instance.recipes;
@@ -47,6 +61,8 @@ public class CraftingUIManager : MonoBehaviour
 
     public void ShowCraftingPanel()
     {
+        AudioManager.Instance.turnUIPageAudio.Play();
+            
         craftingPanel.SetActive(true);
         recipesPanel.SetActive(false);
 
@@ -56,6 +72,8 @@ public class CraftingUIManager : MonoBehaviour
 
     public void ShowRecipesPanel()
     {
+        AudioManager.Instance.turnUIPageAudio.Play();
+        
         craftingPanel.SetActive(false);
         recipesPanel.SetActive(true);
         UpdateRecipePage();
@@ -68,6 +86,7 @@ public class CraftingUIManager : MonoBehaviour
     {
         if ((currentPage + 1) * recipesPerPage < flatRecipeList.Count)
         {
+            AudioManager.Instance.turnUIPageAudio.Play();
             currentPage++;
             UpdateRecipePage();
         }
@@ -77,6 +96,7 @@ public class CraftingUIManager : MonoBehaviour
     {
         if (currentPage > 0)
         {
+            AudioManager.Instance.turnUIPageAudio.Play();
             currentPage--;
             UpdateRecipePage();
         }

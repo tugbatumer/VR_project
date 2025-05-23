@@ -3,9 +3,9 @@ using UnityEngine;
 public class XRMovementWithFootsteps : MonoBehaviour
 {
     public CharacterController characterController;
-    public float gravity = 9.81f;
     public float stepInterval = 0.5f;
     public float minMoveThreshold = 0.01f;
+    public float rayThreshold = 0.1f;
 
     private float stepTimer;
     private Vector3 lastPosition;
@@ -19,12 +19,10 @@ public class XRMovementWithFootsteps : MonoBehaviour
 
     void Update()
     {
-        velocity.y -= gravity * Time.deltaTime;
-        Vector3 totalMovement = velocity * Time.deltaTime;
-        characterController.Move(totalMovement);
         
         float movementThisFrame = Vector3.Distance(transform.position, lastPosition);
-        bool isMoving = characterController.isGrounded && movementThisFrame > minMoveThreshold;
+        Debug.Log(IsGrounded());
+        bool isMoving = IsGrounded() && movementThisFrame > minMoveThreshold;
 
         if (isMoving)
         {
@@ -42,10 +40,18 @@ public class XRMovementWithFootsteps : MonoBehaviour
 
         lastPosition = transform.position;
     }
+    
+    bool IsGrounded()
+    {
+        Vector3 rayOrigin = transform.TransformPoint(characterController.center);
+        float rayDistance = (characterController.height / 2f) + rayThreshold;
+        return Physics.Raycast(rayOrigin, Vector3.down, rayDistance);
+    }
 
     void PlayFootstepAudio()
     {
         int index = Random.Range(0, AudioManager.Instance.footstepsAudioClips.Length);
         AudioManager.Instance.footstepsAudio.PlayOneShot(AudioManager.Instance.footstepsAudioClips[index]);
     }
+    
 }

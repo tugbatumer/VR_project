@@ -6,5 +6,4 @@ public class CageDoor: MonoBehaviour
     {
         AudioManager.Instance.cageDoorOpeningAudio.Play();
     }
-    
 }

@@ -7,20 +7,20 @@ public class HUDManager : MonoBehaviour
     public static HUDManager Instance { get; set; }
     
     [Header("Collectibles")] 
-    public TextMeshProUGUI ironCount;
-    public TextMeshProUGUI glassCount;
+    public TextMeshProUGUI crystalCount;
+    public TextMeshProUGUI featherCount;
     public TextMeshProUGUI woodCount;
-    public Image ironImage;
-    public Image glassImage;
+    public Image crystalImage;
+    public Image featherImage;
     public Image woodImage;
     
     [Header("Craftables")] 
-    public TextMeshProUGUI damageArrowCount;
-    public TextMeshProUGUI lightArrowCount;
-    public TextMeshProUGUI healthPotionCount;
-    public Image damageArrowImage;
-    public Image lightArrowImage;
-    public Image healthPotionImage;
+    public TextMeshProUGUI bowCount;
+    public TextMeshProUGUI arrowCount;
+    public TextMeshProUGUI oxygenPotionCount;
+    public Image bowImage;
+    public Image arrowImage;
+    public Image oxygenPotionImage;
     
     [Header("Oxygen UI")]
     public Image oxygenBar;
@@ -34,22 +34,22 @@ public class HUDManager : MonoBehaviour
         {
             Instance = this;
         }
-        ironImage.sprite = Resources.Load<GameObject>("IronImage").GetComponent<SpriteRenderer>().sprite;
-        glassImage.sprite = Resources.Load<GameObject>("GlassImage").GetComponent<SpriteRenderer>().sprite;
+        crystalImage.sprite = Resources.Load<GameObject>("CrystalImage").GetComponent<SpriteRenderer>().sprite;
+        featherImage.sprite = Resources.Load<GameObject>("FeatherImage").GetComponent<SpriteRenderer>().sprite;
         woodImage.sprite = Resources.Load<GameObject>("WoodImage").GetComponent<SpriteRenderer>().sprite;
-        damageArrowImage.sprite = Resources.Load<GameObject>("DamageArrowImage").GetComponent<SpriteRenderer>().sprite;
-        healthPotionImage.sprite = Resources.Load<GameObject>("HealthPotionImage").GetComponent<SpriteRenderer>().sprite;
-        lightArrowImage.sprite = Resources.Load<GameObject>("LightArrowImage").GetComponent<SpriteRenderer>().sprite;
+        bowImage.sprite = Resources.Load<GameObject>("BowImage").GetComponent<SpriteRenderer>().sprite;
+        oxygenPotionImage.sprite = Resources.Load<GameObject>("OxygenPotionImage").GetComponent<SpriteRenderer>().sprite;
+        arrowImage.sprite = Resources.Load<GameObject>("ArrowImage").GetComponent<SpriteRenderer>().sprite;
     }
     
     private void Update()
     {
-        ironCount.text = $"{CollectibleManager.Instance.GetCollectibleCount(Collectible.CollectibleType.Iron)}";
-        glassCount.text = $"{CollectibleManager.Instance.GetCollectibleCount(Collectible.CollectibleType.Glass)}";
+        crystalCount.text = $"{CollectibleManager.Instance.GetCollectibleCount(Collectible.CollectibleType.Crystal)}";
+        featherCount.text = $"{CollectibleManager.Instance.GetCollectibleCount(Collectible.CollectibleType.Feather)}";
         woodCount.text = $"{CollectibleManager.Instance.GetCollectibleCount(Collectible.CollectibleType.Wood)}";
-        damageArrowCount.text = $"{InventoryManager.Instance.GetItemCount(InventoryManager.itemType.DamageArrow)}";
-        healthPotionCount.text = $"{InventoryManager.Instance.GetItemCount(InventoryManager.itemType.HealthPotion)}";
-        lightArrowCount.text = $"{InventoryManager.Instance.GetItemCount(InventoryManager.itemType.LightArrow)}";
+        bowCount.text = $"{InventoryManager.Instance.GetItemCount(InventoryManager.itemType.Bow)}";
+        oxygenPotionCount.text = $"{InventoryManager.Instance.GetItemCount(InventoryManager.itemType.OxygenPotion)}";
+        arrowCount.text = $"{InventoryManager.Instance.GetItemCount(InventoryManager.itemType.Arrow)}";
     }
 
     public void UpdateOxygenBar(float fillAmount)

@@ -17,8 +17,8 @@ MonoBehaviour:
   - Grabable
   - CageKey
   - NearInteractable
-  - 
-  - 
+  - PokeOnly
+  - PuzzleKey
   - 
   - 
   - 

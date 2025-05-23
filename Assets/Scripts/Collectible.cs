@@ -6,9 +6,10 @@ public class Collectible : MonoBehaviour
     public CollectibleType collectibleType;
     public enum CollectibleType
     {
-        Iron,
-        Glass,
-        Wood
+        Crystal,
+        Feather,
+        Wood,
+        PuzzleKey
     }
     
     public void OnPickedUp()

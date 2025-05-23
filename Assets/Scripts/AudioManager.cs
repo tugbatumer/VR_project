@@ -18,6 +18,12 @@ public class AudioManager : MonoBehaviour
     public AudioSource underwaterAudio;
     public AudioClip[] underwaterSwimClips;
     
+    public AudioSource turnUIPageAudio;
+    public AudioSource craftingSuccessAudio;
+    public AudioSource resetButtonAudio;
+    public AudioSource insertCollectibleAudio;
+    
+    public AudioSource lockedDoorAudio;
     
     private void Awake()
     {

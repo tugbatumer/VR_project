@@ -11,12 +11,15 @@ public class CraftingManager : MonoBehaviour
     [Header("Collectible Sprites")]
     public Sprite[] collectibleSprites;
     
+    public Sprite transparentSprite;
+    public Sprite xSprite;
+    
     public Dictionary<(Collectible.CollectibleType, Collectible.CollectibleType), InventoryManager.itemType> recipes
         => new Dictionary<(Collectible.CollectibleType, Collectible.CollectibleType), InventoryManager.itemType>
         {
-            { SortPair(Collectible.CollectibleType.Iron, Collectible.CollectibleType.Wood), InventoryManager.itemType.DamageArrow },
-            { SortPair(Collectible.CollectibleType.Iron, Collectible.CollectibleType.Glass), InventoryManager.itemType.HealthPotion },
-            { SortPair(Collectible.CollectibleType.Glass, Collectible.CollectibleType.Wood), InventoryManager.itemType.LightArrow }
+            { SortPair(Collectible.CollectibleType.Crystal, Collectible.CollectibleType.Wood), InventoryManager.itemType.Arrow },
+            { SortPair(Collectible.CollectibleType.Wood, Collectible.CollectibleType.Feather), InventoryManager.itemType.Bow },
+            { SortPair(Collectible.CollectibleType.Crystal, Collectible.CollectibleType.Feather), InventoryManager.itemType.OxygenPotion }
         };
 
     

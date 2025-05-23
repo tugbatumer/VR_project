@@ -9,18 +9,18 @@ public class InventoryManager : MonoBehaviour
     
     public InputActionReference cycleAction;
     public InputActionReference dropAction;
+    public InputActionReference putBackAction;
 
     internal GameObject heldCollectible = null;
-    private Collectible.CollectibleType[] collectibleTypes = {  Collectible.CollectibleType.Iron,
-                                                                Collectible.CollectibleType.Glass,
+    private Collectible.CollectibleType[] collectibleTypes = {  Collectible.CollectibleType.Crystal,
+                                                                Collectible.CollectibleType.Feather,
                                                                 Collectible.CollectibleType.Wood };
-
+    
     public enum itemType
     {
-        DamageArrow,
-        LightArrow,
-        HealthPotion
-
+        Bow,
+        Arrow,
+        OxygenPotion
     }
     
     
@@ -28,11 +28,11 @@ public class InventoryManager : MonoBehaviour
     public Transform handTransform;
 
     
-    private Dictionary<itemType, int> itemCounts = new Dictionary<itemType, int>
+    public Dictionary<itemType, int> itemCounts = new Dictionary<itemType, int>
     {
-        { itemType.DamageArrow, 0 },
-        { itemType.LightArrow, 0 },
-        { itemType.HealthPotion, 0 }
+        { itemType.Bow, 3 },
+        { itemType.Arrow, 10 },
+        { itemType.OxygenPotion, 3 }
     };
     
     private void Awake()
@@ -51,14 +51,17 @@ public class InventoryManager : MonoBehaviour
     {
         cycleAction.action.performed += ctx => CycleNextItem();
         dropAction.action.performed += ctx => DropItem();
+        putBackAction.action.performed += ctx => PutBackItem();
         cycleAction.action.Enable();
         dropAction.action.Enable();
+        putBackAction.action.Enable();
     }
 
     void OnDisable()
     {
         cycleAction.action.Disable();
         dropAction.action.Disable();
+        putBackAction.action.Disable();
     }
     
     void CycleNextItem()
@@ -85,7 +88,14 @@ public class InventoryManager : MonoBehaviour
                 rb.isKinematic = true;
             }
             heldCollectible.transform.localPosition = Vector3.zero;
-            heldCollectible.transform.localRotation = Quaternion.identity;
+            if (selectedType != Collectible.CollectibleType.Wood)
+            {
+                heldCollectible.transform.localRotation = Quaternion.identity;
+            }
+            else 
+            {
+                heldCollectible.transform.localRotation = Quaternion.Euler(90, 0, 0);
+            }
         }
     }
 
@@ -119,4 +129,15 @@ public class InventoryManager : MonoBehaviour
             itemCounts[type] += amount;
         }
     }
+
+    public void PutBackItem()
+    {
+        if (heldCollectible != null)
+        {
+            CollectibleManager.Instance.IncrementCollectibleCount(collectibleTypes[currentIndex], 1);
+            Destroy(heldCollectible);
+            heldCollectible = null;
+        }
+    }
+    
 }
