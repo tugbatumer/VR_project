@@ -17,6 +17,7 @@ public class XRMovementWithFootsteps : MonoBehaviour
         stepTimer = stepInterval;
     }
 
+
     void Update()
     {
         float movementThisFrame = Vector3.Distance(transform.position, lastPosition);
