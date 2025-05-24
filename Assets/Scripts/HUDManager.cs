@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -24,6 +25,27 @@ public class HUDManager : MonoBehaviour
     
     [Header("Oxygen UI")]
     public Image oxygenBar;
+    
+    [Header("Checkpoint Feedback")]
+    public TextMeshProUGUI checkpointMessage;
+    public float messageDuration = 2f;
+
+    public void ShowCheckpointMessage()
+    {
+        if (checkpointMessage == null) return;
+        // StopAllCoroutines();
+        StartCoroutine(ShowMessageRoutine());
+    }
+
+    private IEnumerator ShowMessageRoutine()
+    {
+        checkpointMessage.alpha = 1;
+        checkpointMessage.gameObject.SetActive(true);
+        yield return new WaitForSeconds(messageDuration);
+        checkpointMessage.gameObject.SetActive(false);
+    }
+
+    
     private void Awake()
     {
         if (Instance != null && Instance != this)
