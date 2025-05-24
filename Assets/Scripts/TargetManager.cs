@@ -51,6 +51,7 @@ public class TargetManager : MonoBehaviour
             }
             else
             {
+                AudioManager.Instance.puzzleFailureAudio.Play();
                 for (int i = 0; i < 4; i++)
                 {
                     lights[i].SetActive(false);

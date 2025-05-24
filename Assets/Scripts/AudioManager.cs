@@ -27,6 +27,7 @@ public class AudioManager : MonoBehaviour
     public AudioSource arrowShootingAudio;
 
     public AudioSource puzzleSuccessAudio;
+    public AudioSource puzzleFailureAudio;
     
     private void Awake()
     {
