@@ -2833,18 +2833,46 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1497385836}
     m_Modifications:
+    - target: {fileID: 346412486727514802, guid: d1928d27157fa4209a9c1f60894855f2, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.45166
+      objectReference: {fileID: 0}
+    - target: {fileID: 346412486727514802, guid: d1928d27157fa4209a9c1f60894855f2, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 3.28
+      objectReference: {fileID: 0}
+    - target: {fileID: 430835586947283286, guid: d1928d27157fa4209a9c1f60894855f2, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 453cb1dc5f43d477eb11341529311a1d, type: 2}
     - target: {fileID: 2478550239312682541, guid: d1928d27157fa4209a9c1f60894855f2, type: 3}
       propertyPath: m_ClimbProvider
       value: 
-      objectReference: {fileID: 1539672719}
+      objectReference: {fileID: 0}
     - target: {fileID: 2478550239312682541, guid: d1928d27157fa4209a9c1f60894855f2, type: 3}
       propertyPath: m_InteractionManager
       value: 
-      objectReference: {fileID: 2067561423}
+      objectReference: {fileID: 0}
     - target: {fileID: 2478550239312682541, guid: d1928d27157fa4209a9c1f60894855f2, type: 3}
       propertyPath: m_ClimbAssistanceTeleportVolume
       value: 
       objectReference: {fileID: 1353880835}
+    - target: {fileID: 2676170156604727006, guid: d1928d27157fa4209a9c1f60894855f2, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 453cb1dc5f43d477eb11341529311a1d, type: 2}
+    - target: {fileID: 3355231829635304722, guid: d1928d27157fa4209a9c1f60894855f2, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 453cb1dc5f43d477eb11341529311a1d, type: 2}
+    - target: {fileID: 4045004753224175779, guid: d1928d27157fa4209a9c1f60894855f2, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 453cb1dc5f43d477eb11341529311a1d, type: 2}
+    - target: {fileID: 4196965434616941593, guid: d1928d27157fa4209a9c1f60894855f2, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 453cb1dc5f43d477eb11341529311a1d, type: 2}
     - target: {fileID: 4223635557334411916, guid: d1928d27157fa4209a9c1f60894855f2, type: 3}
       propertyPath: m_LocalScale.x
       value: 2
@@ -2900,19 +2928,55 @@ PrefabInstance:
     - target: {fileID: 4410526664489999667, guid: d1928d27157fa4209a9c1f60894855f2, type: 3}
       propertyPath: m_ClimbProvider
       value: 
-      objectReference: {fileID: 1539672719}
+      objectReference: {fileID: 0}
     - target: {fileID: 4410526664489999667, guid: d1928d27157fa4209a9c1f60894855f2, type: 3}
       propertyPath: m_InteractionManager
       value: 
-      objectReference: {fileID: 2067561423}
+      objectReference: {fileID: 0}
     - target: {fileID: 4410526664489999667, guid: d1928d27157fa4209a9c1f60894855f2, type: 3}
       propertyPath: m_ClimbAssistanceTeleportVolume
       value: 
       objectReference: {fileID: 1353880835}
+    - target: {fileID: 4853778303476856869, guid: d1928d27157fa4209a9c1f60894855f2, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 453cb1dc5f43d477eb11341529311a1d, type: 2}
+    - target: {fileID: 5121449591114372526, guid: d1928d27157fa4209a9c1f60894855f2, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 453cb1dc5f43d477eb11341529311a1d, type: 2}
+    - target: {fileID: 5883628976365479294, guid: d1928d27157fa4209a9c1f60894855f2, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 453cb1dc5f43d477eb11341529311a1d, type: 2}
     - target: {fileID: 6209309998178532447, guid: d1928d27157fa4209a9c1f60894855f2, type: 3}
       propertyPath: m_Name
       value: Ladder_2
       objectReference: {fileID: 0}
+    - target: {fileID: 6526894358897026290, guid: d1928d27157fa4209a9c1f60894855f2, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 453cb1dc5f43d477eb11341529311a1d, type: 2}
+    - target: {fileID: 6674124962843322974, guid: d1928d27157fa4209a9c1f60894855f2, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 453cb1dc5f43d477eb11341529311a1d, type: 2}
+    - target: {fileID: 7308040718233920743, guid: d1928d27157fa4209a9c1f60894855f2, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 453cb1dc5f43d477eb11341529311a1d, type: 2}
+    - target: {fileID: 7343831322232681206, guid: d1928d27157fa4209a9c1f60894855f2, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 453cb1dc5f43d477eb11341529311a1d, type: 2}
+    - target: {fileID: 7680918172248464118, guid: d1928d27157fa4209a9c1f60894855f2, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 453cb1dc5f43d477eb11341529311a1d, type: 2}
+    - target: {fileID: 8494564026978519482, guid: d1928d27157fa4209a9c1f60894855f2, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 453cb1dc5f43d477eb11341529311a1d, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -22660,8 +22724,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 3.5125494, z: 1}
-  m_Center: {x: 0, y: -1.2471722, z: 0}
+  m_Size: {x: 0.6779167, y: 3.5125494, z: 0.1384695}
+  m_Center: {x: -0.010614581, y: -1.2471722, z: -0.0062275925}
 --- !u!114 &863403282
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22744,7 +22808,9 @@ MonoBehaviour:
   m_Teleporting:
     m_PersistentCalls:
       m_Calls: []
-  m_AnchorTransforms: []
+  m_AnchorTransforms:
+  - {fileID: 333112893}
+  - {fileID: 581989994}
   m_DestinationEvaluationSettings:
     m_UseConstant: 1
     m_ConstantValue:
@@ -24536,7 +24602,7 @@ Transform:
   m_GameObject: {fileID: 925339225}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.04, y: 3.02, z: 0.64}
+  m_LocalPosition: {x: 0.04, y: 2.981, z: 0.64}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -37499,8 +37565,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 3.5125494, z: 1}
-  m_Center: {x: 0, y: -1.2471722, z: 0}
+  m_Size: {x: 0.7180173, y: 3.5125499, z: 0.14379397}
+  m_Center: {x: 0.0056948066, y: -1.2471724, z: -0.023965195}
 --- !u!114 &1353880835
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -37583,7 +37649,9 @@ MonoBehaviour:
   m_Teleporting:
     m_PersistentCalls:
       m_Calls: []
-  m_AnchorTransforms: []
+  m_AnchorTransforms:
+  - {fileID: 598465663}
+  - {fileID: 925339226}
   m_DestinationEvaluationSettings:
     m_UseConstant: 1
     m_ConstantValue:
@@ -44853,17 +44921,6 @@ Camera:
   m_CorrespondingSourceObject: {fileID: 1767192439, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
   m_PrefabInstance: {fileID: 1539672717}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1539672719 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5739245880472075158, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
-  m_PrefabInstance: {fileID: 1539672717}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 496880615cd240be960d436c1c8ae570, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &1540673868 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6182452670827713600, guid: cfb04594231799d4092ee0064447ce94, type: 3}
@@ -59862,18 +59919,38 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1497385836}
     m_Modifications:
+    - target: {fileID: 430835586947283286, guid: d1928d27157fa4209a9c1f60894855f2, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 453cb1dc5f43d477eb11341529311a1d, type: 2}
     - target: {fileID: 2478550239312682541, guid: d1928d27157fa4209a9c1f60894855f2, type: 3}
       propertyPath: m_ClimbProvider
       value: 
-      objectReference: {fileID: 1539672719}
+      objectReference: {fileID: 0}
     - target: {fileID: 2478550239312682541, guid: d1928d27157fa4209a9c1f60894855f2, type: 3}
       propertyPath: m_InteractionManager
       value: 
-      objectReference: {fileID: 2067561423}
+      objectReference: {fileID: 0}
     - target: {fileID: 2478550239312682541, guid: d1928d27157fa4209a9c1f60894855f2, type: 3}
       propertyPath: m_ClimbAssistanceTeleportVolume
       value: 
       objectReference: {fileID: 863403282}
+    - target: {fileID: 2676170156604727006, guid: d1928d27157fa4209a9c1f60894855f2, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 453cb1dc5f43d477eb11341529311a1d, type: 2}
+    - target: {fileID: 3355231829635304722, guid: d1928d27157fa4209a9c1f60894855f2, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 453cb1dc5f43d477eb11341529311a1d, type: 2}
+    - target: {fileID: 4045004753224175779, guid: d1928d27157fa4209a9c1f60894855f2, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 453cb1dc5f43d477eb11341529311a1d, type: 2}
+    - target: {fileID: 4196965434616941593, guid: d1928d27157fa4209a9c1f60894855f2, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 453cb1dc5f43d477eb11341529311a1d, type: 2}
     - target: {fileID: 4223635557334411916, guid: d1928d27157fa4209a9c1f60894855f2, type: 3}
       propertyPath: m_LocalScale.x
       value: 1.6
@@ -59929,19 +60006,55 @@ PrefabInstance:
     - target: {fileID: 4410526664489999667, guid: d1928d27157fa4209a9c1f60894855f2, type: 3}
       propertyPath: m_ClimbProvider
       value: 
-      objectReference: {fileID: 1539672719}
+      objectReference: {fileID: 0}
     - target: {fileID: 4410526664489999667, guid: d1928d27157fa4209a9c1f60894855f2, type: 3}
       propertyPath: m_InteractionManager
       value: 
-      objectReference: {fileID: 2067561423}
+      objectReference: {fileID: 0}
     - target: {fileID: 4410526664489999667, guid: d1928d27157fa4209a9c1f60894855f2, type: 3}
       propertyPath: m_ClimbAssistanceTeleportVolume
       value: 
       objectReference: {fileID: 863403282}
+    - target: {fileID: 4853778303476856869, guid: d1928d27157fa4209a9c1f60894855f2, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 453cb1dc5f43d477eb11341529311a1d, type: 2}
+    - target: {fileID: 5121449591114372526, guid: d1928d27157fa4209a9c1f60894855f2, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 453cb1dc5f43d477eb11341529311a1d, type: 2}
+    - target: {fileID: 5883628976365479294, guid: d1928d27157fa4209a9c1f60894855f2, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 453cb1dc5f43d477eb11341529311a1d, type: 2}
     - target: {fileID: 6209309998178532447, guid: d1928d27157fa4209a9c1f60894855f2, type: 3}
       propertyPath: m_Name
       value: Ladder_1
       objectReference: {fileID: 0}
+    - target: {fileID: 6526894358897026290, guid: d1928d27157fa4209a9c1f60894855f2, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 453cb1dc5f43d477eb11341529311a1d, type: 2}
+    - target: {fileID: 6674124962843322974, guid: d1928d27157fa4209a9c1f60894855f2, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 453cb1dc5f43d477eb11341529311a1d, type: 2}
+    - target: {fileID: 7308040718233920743, guid: d1928d27157fa4209a9c1f60894855f2, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 453cb1dc5f43d477eb11341529311a1d, type: 2}
+    - target: {fileID: 7343831322232681206, guid: d1928d27157fa4209a9c1f60894855f2, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 453cb1dc5f43d477eb11341529311a1d, type: 2}
+    - target: {fileID: 7680918172248464118, guid: d1928d27157fa4209a9c1f60894855f2, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 453cb1dc5f43d477eb11341529311a1d, type: 2}
+    - target: {fileID: 8494564026978519482, guid: d1928d27157fa4209a9c1f60894855f2, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 453cb1dc5f43d477eb11341529311a1d, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
