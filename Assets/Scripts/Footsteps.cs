@@ -20,7 +20,6 @@ public class XRMovementWithFootsteps : MonoBehaviour
     void Update()
     {
         float movementThisFrame = Vector3.Distance(transform.position, lastPosition);
-        Debug.Log(IsGrounded());
         bool isMoving = IsGrounded() && movementThisFrame > minMoveThreshold;
 
         if (isMoving)
