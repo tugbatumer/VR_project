@@ -1196,7 +1196,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6245c5f23c906423ab015a8683f0b1c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  zoneType: 1
+  zoneType: 2
   boxCollider: {fileID: 36556399}
 --- !u!65 &36556399
 BoxCollider:
@@ -3814,7 +3814,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6245c5f23c906423ab015a8683f0b1c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  zoneType: 1
+  zoneType: 2
   boxCollider: {fileID: 174697248}
 --- !u!65 &174697248
 BoxCollider:
@@ -17521,8 +17521,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.6353572, y: 1.7962227, z: 0.8458447}
-  m_Center: {x: -0.18500532, y: -0.3981107, z: -0.085587285}
+  m_Size: {x: 0.4265658, y: 1.7962227, z: 0.8458447}
+  m_Center: {x: -0.28940105, y: -0.3981107, z: -0.085587285}
 --- !u!114 &695967131
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17535,7 +17535,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6245c5f23c906423ab015a8683f0b1c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  zoneType: 0
+  zoneType: 1
   boxCollider: {fileID: 695967130}
 --- !u!1001 &697037888
 PrefabInstance:
@@ -32456,7 +32456,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6245c5f23c906423ab015a8683f0b1c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  zoneType: 1
+  zoneType: 2
   boxCollider: {fileID: 1243491275}
 --- !u!1 &1245146515
 GameObject:
@@ -36220,6 +36220,11 @@ MonoBehaviour:
   - {fileID: 8300000, guid: edd7e7f6bb91a405895d1175b105c20a, type: 3}
   - {fileID: 8300000, guid: a5ebe08268bda406b9cec89e2e49cc4a, type: 3}
   - {fileID: 8300000, guid: f6c33b0d283c0410c8e9fab78f117bc9, type: 3}
+  waterStepClips:
+  - {fileID: 8300000, guid: 22766e7d57f674ff189e8c51b0b744bf, type: 3}
+  - {fileID: 8300000, guid: cc78498b8c68941f985e74ba89d3f9db, type: 3}
+  - {fileID: 8300000, guid: 1ac811706e5454d3f9a929e89245b479, type: 3}
+  - {fileID: 8300000, guid: 9cd34bcb015ba4ceeb2fdc623333e935, type: 3}
   turnUIPageAudio: {fileID: 0}
   craftingSuccessAudio: {fileID: 0}
   resetButtonAudio: {fileID: 0}
@@ -36227,6 +36232,7 @@ MonoBehaviour:
   lockedDoorAudio: {fileID: 0}
   arrowShootingAudio: {fileID: 0}
   puzzleSuccessAudio: {fileID: 0}
+  puzzleFailureAudio: {fileID: 0}
 --- !u!4 &1399682409
 Transform:
   m_ObjectHideFlags: 0
@@ -40474,19 +40480,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1717954561962503726, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 26.874
+      value: 28.703815
       objectReference: {fileID: 0}
     - target: {fileID: 1717954561962503726, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.571
+      value: 2.504
       objectReference: {fileID: 0}
     - target: {fileID: 1717954561962503726, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 29.75
+      value: 24.882935
       objectReference: {fileID: 0}
     - target: {fileID: 1717954561962503726, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.67888325
+      value: 0.99955827
       objectReference: {fileID: 0}
     - target: {fileID: 1717954561962503726, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
       propertyPath: m_LocalRotation.x
@@ -40494,7 +40500,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1717954561962503726, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.73424625
+      value: -0.029721422
       objectReference: {fileID: 0}
     - target: {fileID: 1717954561962503726, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
       propertyPath: m_LocalRotation.z
@@ -40506,7 +40512,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1717954561962503726, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: -94.487
+      value: -3.406
       objectReference: {fileID: 0}
     - target: {fileID: 1717954561962503726, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
@@ -41024,8 +41030,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.6466823, y: 2.8376179, z: 0.8458446}
-  m_Center: {x: -0.17661323, y: 0.12258542, z: -0.08558728}
+  m_Size: {x: 0.3082312, y: 2.3705316, z: 0.8458446}
+  m_Center: {x: -0.0073891543, y: -0.11095908, z: -0.085587315}
 --- !u!114 &1553393598
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -41038,7 +41044,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6245c5f23c906423ab015a8683f0b1c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  zoneType: 0
+  zoneType: 1
   boxCollider: {fileID: 1553393597}
 --- !u!1001 &1554592540
 PrefabInstance:
@@ -55538,7 +55544,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6245c5f23c906423ab015a8683f0b1c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  zoneType: 0
+  zoneType: 1
   boxCollider: {fileID: 2022978233}
 --- !u!65 &2022978233
 BoxCollider:

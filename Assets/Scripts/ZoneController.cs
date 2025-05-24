@@ -11,8 +11,15 @@ public class ZoneController : MonoBehaviour
     [SerializeField] private CharacterController characterController;
     [SerializeField] private OxygenManager oxygenManager;
 
-    private Zone.ZoneType currentZone = Zone.ZoneType.Land;
+    private Zone.ZoneType currentZone = Zone.ZoneType.None;
+    public bool IsWalksOnWater { get; set; } = false;
 
+    public void SwitchToNoneZone()
+    {
+        IsWalksOnWater = false;
+        currentZone = Zone.ZoneType.None;
+    }
+    public bool IsLand() => currentZone == Zone.ZoneType.Land;
     private void Awake()
     {
         Instance = this;
@@ -39,6 +46,7 @@ public class ZoneController : MonoBehaviour
             moveProvider.enabled = true;
             footsteps.enabled = true;
             characterController.enabled = true;
+            IsWalksOnWater = true;
         }
     }
 }

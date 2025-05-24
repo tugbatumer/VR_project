@@ -17,6 +17,7 @@ public class AudioManager : MonoBehaviour
     public AudioSource surfaceSwimAudio;
     public AudioSource underwaterAudio;
     public AudioClip[] underwaterSwimClips;
+    public AudioClip[] waterStepClips;
     
     public AudioSource turnUIPageAudio;
     public AudioSource craftingSuccessAudio;
