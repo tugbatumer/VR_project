@@ -24,6 +24,7 @@ public class ConsumptionManager : MonoBehaviour
     public GameObject bowPartPrefab;
     public GameObject oxygenPotionPartPrefab;
     public float OxygenPotionAmount = 0.5f;
+    public GameObject aimCanvas;
     
     private Dictionary<InventoryManager.itemType, GameObject> itemPrefabs;
     
@@ -75,15 +76,22 @@ public class ConsumptionManager : MonoBehaviour
     
     void CycleNextItem()
     {
+        InventoryManager.itemType selectedType = consumableTypes[currentIndex];
         if (heldConsumable != null)
         {
+            if (selectedType == InventoryManager.itemType.Bow)
+            {
+                aimCanvas.SetActive(false);
+                heldConsumable.GetComponent<BowController>().OnBowReleased();
+            }
+            
             InventoryManager.Instance.IncrementItemCount(consumableTypes[currentIndex], 1);
             Destroy(heldConsumable);
             heldConsumable = null;
         }
         
         currentIndex = (currentIndex + 1) % consumableTypes.Length;
-        InventoryManager.itemType selectedType = consumableTypes[currentIndex];
+        selectedType = consumableTypes[currentIndex];
         
 
         if (InventoryManager.Instance.GetItemCount(selectedType) > 0)
@@ -104,6 +112,7 @@ public class ConsumptionManager : MonoBehaviour
                 heldConsumable.GetComponent<BowController>().handInteractor = handInteractor;
                 heldConsumable.GetComponent<BowController>().leftHand = leftHandTransform;
                 heldConsumable.GetComponent<BowController>().rightHand = rightHandTransform;
+                heldConsumable.GetComponent<BowController>().aimCanvas = aimCanvas;
                 
                 heldConsumable.transform.localPosition = Vector3.zero;
                 heldConsumable.transform.localRotation = Quaternion.identity;
@@ -136,9 +145,17 @@ public class ConsumptionManager : MonoBehaviour
     {
         if (heldConsumable != null)
         {
+            InventoryManager.itemType selectedType = consumableTypes[currentIndex];
+            
             InventoryManager.Instance.IncrementItemCount(consumableTypes[currentIndex], 1);
             Destroy(heldConsumable);
             heldConsumable = null;
+
+            if (selectedType == InventoryManager.itemType.Bow)
+            {
+                aimCanvas.SetActive(false);
+                heldConsumable.GetComponent<BowController>().OnBowReleased();
+            }
         }
     }
 

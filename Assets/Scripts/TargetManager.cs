@@ -1,23 +1,63 @@
 using UnityEngine;
 
-public class TargetHit : MonoBehaviour
+public class TargetManager : MonoBehaviour
 {
-    private void OnCollisionEnter(Collision collision)
+    internal bool gameOver = false;
+    private int[] IDOrder = new int[4] {4, 2, 1, 3};
+    private int expectedIndex = 0;
+    public static TargetManager Instance { get; set; }
+    
+    public GameObject archeryDoor;
+    
+    public GameObject[] lights = new GameObject[4];
+    
+    private void Awake()
     {
-        if (collision.gameObject.CompareTag("Arrow"))
+        if(Instance != null && Instance != this)
         {
-            Debug.Log("🎯 Target hit!");
+            Destroy(gameObject);
+        }
+        else
+        {
+            Instance = this;
+        }
+    }
+    void Start()
+    {
+        
+    }
 
-            Rigidbody rb = collision.gameObject.GetComponent<Rigidbody>();
-            if (rb != null)
+    // Update is called once per frame
+    void Update()
+    {
+        
+    }
+
+    public void HitEvent(int ID)
+    {
+        if (!gameOver)
+        {
+            int expectedID = IDOrder[expectedIndex];
+
+            if (expectedID == ID)
             {
-                rb.linearVelocity = Vector3.zero;
-                rb.angularVelocity = Vector3.zero;
-                rb.isKinematic = true; // Freeze the arrow
+                lights[ID - 1].SetActive(true);
+                expectedIndex++;
+                if (expectedIndex == IDOrder.Length)
+                {
+                    AudioManager.Instance.puzzleSuccessAudio.Play();
+                    gameOver = true;
+                }
             }
+            else
+            {
+                for (int i = 0; i < 4; i++)
+                {
+                    lights[i].SetActive(false);
+                }
 
-            // Parent the arrow to the target so it sticks
-            collision.transform.SetParent(this.transform);
+                expectedIndex = 0;
+            }
         }
     }
 }

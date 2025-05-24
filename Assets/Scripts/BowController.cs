@@ -1,3 +1,4 @@
+using Unity.XR.CoreUtils;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.XR.Interaction.Toolkit;
@@ -35,6 +36,10 @@ public class BowController : MonoBehaviour
     
     public XRBaseInteractor handInteractor;
     public XRGrabInteractable grabInteractable;
+
+    public GameObject aimCanvas;
+    public float maxRayDistance = 100f;
+    
     
 
     void Start()
@@ -45,10 +50,10 @@ public class BowController : MonoBehaviour
     void Update()
     {
         if (!bowHand) return;
-        
+        int arrowCount = InventoryManager.Instance.itemCounts[InventoryManager.itemType.Arrow];
 
         // Attach string to the other hand when close
-        if (!pullingHand && Vector3.Distance(otherHand.position, stringRestPosition.position) < attachDistance)
+        if (arrowCount > 0 && !pullingHand && Vector3.Distance(otherHand.position, stringRestPosition.position) < attachDistance)
         {
             pullingHand = otherHand;
             SpawnArrow();
@@ -60,7 +65,14 @@ public class BowController : MonoBehaviour
             Vector3 pullDir = (stringPullLimit.position - stringRestPosition.position).normalized;
             pullAmount = Vector3.Dot(pullingHand.position - stringRestPosition.position, pullDir);
             pullAmount = Mathf.Clamp(pullAmount, 0, maxPullDistance);
-            
+
+            Vector3 rayOrigin = currentArrow.transform.Find("tipPoint").position;
+            if (Physics.Raycast(rayOrigin, -1.0f * pullDir, out RaycastHit hit, maxRayDistance))
+            {
+                aimCanvas.SetActive(true);
+                aimCanvas.transform.position = hit.point + 0.15f * pullDir;
+                aimCanvas.transform.rotation = Quaternion.LookRotation(hit.normal);
+            }
 
             stringBone.position = stringRestPosition.position + pullDir * pullAmount;
             topLimit.localRotation = Quaternion.Euler(pullAmount * -15f, 0f, 0f);
@@ -89,6 +101,7 @@ public class BowController : MonoBehaviour
     {
         if (currentArrow)
         {
+            InventoryManager.Instance.itemCounts[InventoryManager.itemType.Arrow]++;
             Destroy(currentArrow);
             currentArrow = null;
         }
@@ -101,6 +114,7 @@ public class BowController : MonoBehaviour
     private void SpawnArrow()
     {
         currentArrow = Instantiate(arrowPrefab);
+        InventoryManager.Instance.itemCounts[InventoryManager.itemType.Arrow]--;
         Rigidbody rb = currentArrow.GetComponent<Rigidbody>();
         rb.isKinematic = true;
         rb.useGravity = false;
@@ -115,16 +129,17 @@ public class BowController : MonoBehaviour
     {
         if (!currentArrow || pullAmount == 0) return;
 
+        AudioManager.Instance.arrowShootingAudio.Play();
         Rigidbody rb = currentArrow.GetComponent<Rigidbody>();
         rb.isKinematic = false;
         rb.useGravity = true;
         rb.AddForce(arrowNockPoint.forward * pullAmount * shootForceMultiplier, ForceMode.Impulse);
-        Debug.Log(arrowNockPoint.forward * pullAmount * shootForceMultiplier);
-        Debug.DrawRay(arrowNockPoint.position, arrowNockPoint.forward * 2f, Color.red, 2f);
 
         currentArrow = null;
         pullingHand = null;
         stringBone.position = stringRestPosition.position;
+        
+        aimCanvas.SetActive(false);
     }
 
     private bool IsTriggerHeld(Transform hand)

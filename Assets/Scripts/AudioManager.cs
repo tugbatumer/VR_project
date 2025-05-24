@@ -24,6 +24,9 @@ public class AudioManager : MonoBehaviour
     public AudioSource insertCollectibleAudio;
     
     public AudioSource lockedDoorAudio;
+    public AudioSource arrowShootingAudio;
+
+    public AudioSource puzzleSuccessAudio;
     
     private void Awake()
     {

@@ -8,6 +8,7 @@ TagManager:
   - Land
   - Water
   - Buffer
+  - Arrow
   layers:
   - Default
   - TransparentFX
