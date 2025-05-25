@@ -50,6 +50,7 @@ public class VRSwimmingController : MonoBehaviour
     private float currentWaterSurfaceY;
     private bool isUnderwater = false;
 
+    public bool IsUnderwater => isUnderwater;
     public void SetWaterSurfaceHeight(float surfaceY)
     {
         currentWaterSurfaceY = surfaceY;

@@ -62366,6 +62366,7 @@ MonoBehaviour:
   footsteps: {fileID: 1666227635}
   characterController: {fileID: 1666227634}
   oxygenManager: {fileID: 720139575}
+  playerRigidbody: {fileID: 1666227643}
 --- !u!4 &1470051611
 Transform:
   m_ObjectHideFlags: 0
@@ -72438,7 +72439,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52c390f6fa1904548b6fb762b8511e53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  propulsionStrength: 150
+  propulsionStrength: 5
   waterDrag: 2
   requiredStrokeVelocity: 1
   strokeCooldown: 0.5

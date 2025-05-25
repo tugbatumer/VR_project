@@ -10,7 +10,7 @@ public class ZoneController : MonoBehaviour
     [SerializeField] private XRMovementWithFootsteps footsteps;
     [SerializeField] private CharacterController characterController;
     [SerializeField] private OxygenManager oxygenManager;
-
+    public Rigidbody playerRigidbody;  
     private Zone.ZoneType currentZone = Zone.ZoneType.None;
     public bool IsWalksOnWater { get; set; } = false;
 
@@ -27,7 +27,7 @@ public class ZoneController : MonoBehaviour
 
     public void SwitchZone(Zone.ZoneType newZone, float? surfaceY)
     {
-        Debug.Log($"Try swıtched zone: {currentZone}");
+        //Debug.Log($"Try swıtched zone: {currentZone}");
         if (newZone == currentZone) return;
 
         currentZone = newZone;
@@ -49,6 +49,12 @@ public class ZoneController : MonoBehaviour
         footsteps.enabled = false;
         characterController.enabled = false;
         swimmingController.Enable(surfaceY);
+        while (swimmingController.IsUnderwater)
+        {
+            Vector3 pushDirection = Vector3.up * 10f;
+            playerRigidbody.AddForce(pushDirection, ForceMode.Acceleration);
+        }
+        playerRigidbody.AddForce(Vector3.forward * 200, ForceMode.Acceleration);
     }
     
     public void DisableSwimming()
