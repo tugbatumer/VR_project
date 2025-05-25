@@ -1,4 +1,4 @@
-# Project Title: [Dungeon Escape RPG]
+# Project Title: Dungeon Escape RPG
 This game is developed in Unity editor version 6000.0.41f1 for Oculus Quest 2 headsets.
 ## Repository Structure
 
@@ -63,8 +63,7 @@ Artwork used in this project, such as 3D objects, audio clips, textures and mate
 No scripts were adapted.
 
 **Assets**:
-
-/Assets/Prefabs/Bow.prefab was modified with the addition of ``bones'' to the strategic places in the 3D mesh of the object in Blender. After importing this object in Unity, when a position of a bone changes by some amount, the rest of the string also moves with it accordingly, creating a realistic string pulling visual effect.
+Assets/Prefabs/Bow.prefab was modified with the addition of ``bones'' to the strategic places in the 3D mesh of the object in Blender. After importing this object in Unity, when a position of a bone changes by some amount, the rest of the string also moves with it accordingly, creating a realistic string pulling visual effect.
 
 ### Unmodified (Used As-Is)
 
