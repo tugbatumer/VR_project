@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -25,6 +26,9 @@ public class MenuManager : MonoBehaviour
     
     private Vector3 beforePosition;
     private Quaternion beforeRotation;
+    
+    public TextMeshProUGUI minutesText;
+    public TextMeshProUGUI secondsText;
     
 
     public float fadeDuration = 3.0f;
@@ -168,7 +172,6 @@ public class MenuManager : MonoBehaviour
 
     public void ToggleMenu()
     {
-        Debug.Log(isMenuOpen);
         if (isMenuOpen)
         {
             CloseMenu(beforePosition, beforeRotation);
@@ -205,10 +208,21 @@ public class MenuManager : MonoBehaviour
     
     void OnTimeOver()
     {
-        // Handle time over logic here
-        Debug.Log("Time is over!");
-        // You can trigger a game over screen or reset the game
-        FindFirstObjectByType<TutorialManager>().ShowTutorial("Time is over! Try again.");
+        AudioManager.Instance.gameOverAudio.PlayOneShot(AudioManager.Instance.gameOverAudio.clip, masterVolumeScaler);
+        OpenMenu();
+        isMenuOpen = true;
+        MenuScreen.Instance.showGameOverTab();
+    }
+
+    public void onGameWon()
+    {
+        timerPaused = true;
+        minutesText.text = $"{Mathf.FloorToInt(remainingTime / 60):00}";
+        secondsText.text = $"{Mathf.FloorToInt(remainingTime % 60):00}";
+        AudioManager.Instance.gameWinAudio.PlayOneShot(AudioManager.Instance.gameWinAudio.clip, masterVolumeScaler);
+        OpenMenu();
+        isMenuOpen = true;
+        MenuScreen.Instance.showGameWonTab();
     }
 
     public void restartGame()

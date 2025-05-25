@@ -18,6 +18,8 @@ public class MenuScreen : MonoBehaviour
     public GameObject mainTab;
     public GameObject controlsTab;
     public GameObject featuresTab;
+    public GameObject gameOverTab;
+    public GameObject gameWonTab;
     
     private void Awake()
     {
@@ -61,6 +63,8 @@ public class MenuScreen : MonoBehaviour
         mainTab.SetActive(false);
         controlsTab.SetActive(false);
         featuresTab.SetActive(false);
+        gameOverTab.SetActive(false);
+        gameWonTab.SetActive(false);
 
         canvas.SetActive(true);
         
@@ -89,7 +93,33 @@ public class MenuScreen : MonoBehaviour
         mainTab.SetActive(false);
         controlsTab.SetActive(false);
         featuresTab.SetActive(false);
+        gameOverTab.SetActive(false);
+        gameWonTab.SetActive(false);
         
+    }
+    
+    public void showGameWonTab()
+    {
+        gameWonTab.SetActive(true);
+        gameOverTab.SetActive(false);
+        mainMenuCanvas.SetActive(false);
+        startMenuCanvas.SetActive(false);
+        mainTabStart.SetActive(false);
+        mainTab.SetActive(false);
+        controlsTab.SetActive(false);
+        featuresTab.SetActive(false);
+    }
+    
+    public void showGameOverTab()
+    {
+        gameWonTab.SetActive(false);
+        gameOverTab.SetActive(true);
+        mainMenuCanvas.SetActive(false);
+        startMenuCanvas.SetActive(false);
+        mainTabStart.SetActive(false);
+        mainTab.SetActive(false);
+        controlsTab.SetActive(false);
+        featuresTab.SetActive(false);
     }
     
     

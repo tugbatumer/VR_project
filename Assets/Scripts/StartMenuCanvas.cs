@@ -25,19 +25,19 @@ public class StartMenuCanvas : MonoBehaviour
                 easyButton.interactable = false;
                 mediumButton.interactable = true;
                 hardButton.interactable = true;
-                MenuManager.Instance.setTimeLimit(60 * 60);
+                MenuManager.Instance.setTimeLimit(60* 60); // 60 minutes
                 break;
             case "medium":
                 easyButton.interactable = true;
                 mediumButton.interactable = false;
                 hardButton.interactable = true;
-                MenuManager.Instance.setTimeLimit(15 * 60);
+                MenuManager.Instance.setTimeLimit(15*60);
                 break;
             case "hard":
                 easyButton.interactable = true;
                 mediumButton.interactable = true;
                 hardButton.interactable = false;
-                MenuManager.Instance.setTimeLimit(5 * 60);
+                MenuManager.Instance.setTimeLimit(5*60);
                 break;
             default:
                 Debug.LogWarning("Unknown difficulty level: " + difficulty);

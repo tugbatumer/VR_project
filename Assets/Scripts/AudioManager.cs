@@ -32,6 +32,10 @@ public class AudioManager : MonoBehaviour
     
     public AudioSource soundtrackAudio;
     
+    public AudioSource gameOverAudio;
+    public AudioSource gameWinAudio;
+    public AudioSource waterFillAudio;
+    
     private void Awake()
     {
         if(Instance != null && Instance != this)

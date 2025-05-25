@@ -17,6 +17,7 @@ public class ButtonTarget : MonoBehaviour
             collision.transform.SetParent(this.transform);
             buttonAnimator.SetTrigger("ButtonPress");
             WaterRiserController.Instance.StartRising();
+            AudioManager.Instance.waterFillAudio.PlayOneShot(AudioManager.Instance.waterFillAudio.clip, MenuManager.Instance.masterVolumeScaler);
         }
     }
 }

@@ -24,7 +24,7 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu.unity
     guid: 164a2711089c04a7fb3e8310fd44a49f
   - enabled: 1
-    path: Assets/Scenes/FinalYagiz.unity
+    path: Assets/Scenes/FinalScene.unity
     guid: b0e808cc8332947a3ac0a27475d33c1f
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: c348712bda248c246b8c49b3db54643f, type: 3}
