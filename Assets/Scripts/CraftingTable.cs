@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine.UI;
 
 public class CraftingTable : MonoBehaviour
@@ -25,7 +26,7 @@ public class CraftingTable : MonoBehaviour
 
             if (heldCollectible != null)
             {
-                AudioManager.Instance.insertCollectibleAudio.Play();
+                AudioManager.Instance.insertCollectibleAudio.PlayOneShot(AudioManager.Instance.insertCollectibleAudio.clip, MenuManager.Instance.masterVolumeScaler);
                 
                 int index = (int)heldCollectible.collectibleType;
                 insertedTypes.Add(heldCollectible.collectibleType);
@@ -63,8 +64,8 @@ public class CraftingTable : MonoBehaviour
 
             if (CraftingManager.Instance.recipes.TryGetValue(key, out var result))
             {
-                InventoryManager.Instance.IncrementItemCount(result, 1);
-                AudioManager.Instance.craftingSuccessAudio.Play();
+                InventoryManager.Instance.IncrementItemCount(result, result == InventoryManager.itemType.Arrow ? 20 : 1);
+                AudioManager.Instance.craftingSuccessAudio.PlayOneShot(AudioManager.Instance.craftingSuccessAudio.clip, MenuManager.Instance.masterVolumeScaler);
             }
 
             clearTable();
@@ -76,7 +77,7 @@ public class CraftingTable : MonoBehaviour
 
     public void resetTable()
     {
-        AudioManager.Instance.resetButtonAudio.Play();
+        AudioManager.Instance.resetButtonAudio.PlayOneShot(AudioManager.Instance.resetButtonAudio.clip, MenuManager.Instance.masterVolumeScaler);
         
         foreach (var type in insertedTypes)
         {

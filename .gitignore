@@ -60,3 +60,4 @@ ProjectSettings/EditorBuildSettings.asset
 # Uncomment if you use JetBrains Rider
 # .idea/
 
+.DS_Store

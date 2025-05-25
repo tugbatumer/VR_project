@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -24,6 +25,31 @@ public class HUDManager : MonoBehaviour
     
     [Header("Oxygen UI")]
     public Image oxygenBar;
+    
+    [Header("Checkpoint Feedback")]
+    public TextMeshProUGUI checkpointMessage;
+    public float messageDuration = 2f;
+    
+    [Header("Remaining Time")]
+    public TextMeshProUGUI minutesText;
+    public TextMeshProUGUI secondsText;
+
+    public void ShowCheckpointMessage()
+    {
+        if (checkpointMessage == null) return;
+        // StopAllCoroutines();
+        StartCoroutine(ShowMessageRoutine());
+    }
+
+    private IEnumerator ShowMessageRoutine()
+    {
+        checkpointMessage.alpha = 1;
+        checkpointMessage.gameObject.SetActive(true);
+        yield return new WaitForSeconds(messageDuration);
+        checkpointMessage.gameObject.SetActive(false);
+    }
+
+    
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -50,6 +76,9 @@ public class HUDManager : MonoBehaviour
         bowCount.text = $"{InventoryManager.Instance.GetItemCount(InventoryManager.itemType.Bow)}";
         oxygenPotionCount.text = $"{InventoryManager.Instance.GetItemCount(InventoryManager.itemType.OxygenPotion)}";
         arrowCount.text = $"{InventoryManager.Instance.GetItemCount(InventoryManager.itemType.Arrow)}";
+        
+        minutesText.text = $"{Mathf.FloorToInt(MenuManager.Instance.remainingTime / 60):00}";
+        secondsText.text = $"{Mathf.FloorToInt(MenuManager.Instance.remainingTime % 60):00}";
     }
 
     public void UpdateOxygenBar(float fillAmount)

@@ -17,11 +17,10 @@ public class XRMovementWithFootsteps : MonoBehaviour
         stepTimer = stepInterval;
     }
 
+
     void Update()
     {
-        
         float movementThisFrame = Vector3.Distance(transform.position, lastPosition);
-        Debug.Log(IsGrounded());
         bool isMoving = IsGrounded() && movementThisFrame > minMoveThreshold;
 
         if (isMoving)
@@ -29,7 +28,11 @@ public class XRMovementWithFootsteps : MonoBehaviour
             stepTimer -= Time.deltaTime;
             if (stepTimer <= 0.0f)
             {
-                PlayFootstepAudio();
+                if (ZoneController.Instance.IsWalksOnWater)
+                    PlayWaterFootstepAudio();
+                else
+                    PlayFootstepAudio();
+
                 stepTimer = stepInterval;
             }
         }
@@ -40,12 +43,19 @@ public class XRMovementWithFootsteps : MonoBehaviour
 
         lastPosition = transform.position;
     }
-    
+
     bool IsGrounded()
     {
+        return true;
         Vector3 rayOrigin = transform.TransformPoint(characterController.center);
         float rayDistance = (characterController.height / 2f) + rayThreshold;
         return Physics.Raycast(rayOrigin, Vector3.down, rayDistance);
+    }
+
+    void PlayWaterFootstepAudio()
+    {
+        int index = Random.Range(0, AudioManager.Instance.waterStepClips.Length);
+        AudioManager.Instance.surfaceSwimAudio.PlayOneShot(AudioManager.Instance.waterStepClips[index]);
     }
 
     void PlayFootstepAudio()
@@ -53,5 +63,4 @@ public class XRMovementWithFootsteps : MonoBehaviour
         int index = Random.Range(0, AudioManager.Instance.footstepsAudioClips.Length);
         AudioManager.Instance.footstepsAudio.PlayOneShot(AudioManager.Instance.footstepsAudioClips[index]);
     }
-    
 }

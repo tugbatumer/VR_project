@@ -14,12 +14,18 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/Final.unity
     guid: 5ba1a6b388ad945a98f7a2389bc58e39
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Final_archery.unity
     guid: 5f4f645ddbb2642fd8bb89601d35d0ee
   - enabled: 0
     path: Assets/Scenes/CoreFeatures.unity
     guid: 874dac5118fb1486ab9175bd2d816fcd
+  - enabled: 0
+    path: Assets/Scenes/MainMenu.unity
+    guid: 164a2711089c04a7fb3e8310fd44a49f
+  - enabled: 1
+    path: Assets/Scenes/FinalYagiz.unity
+    guid: b0e808cc8332947a3ac0a27475d33c1f
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: c348712bda248c246b8c49b3db54643f, type: 3}
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: d8d4100ebaeb247ed896a648a81a3aaf, type: 2}

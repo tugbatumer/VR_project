@@ -4,13 +4,13 @@ public class SwimAudioManager : MonoBehaviour
 {
     public void PlaySurfaceSwim()
     {
-        AudioManager.Instance.surfaceSwimAudio.Play();
+        AudioManager.Instance.surfaceSwimAudio.PlayOneShot(AudioManager.Instance.surfaceSwimAudio.clip, MenuManager.Instance.masterVolumeScaler);
     }
     
     public void PlayUnderwater()
     {
         //AudioManager.Instance.underwaterAudio.loop = true;
-        AudioManager.Instance.underwaterAudio.Play();
+        AudioManager.Instance.underwaterAudio.PlayOneShot(AudioManager.Instance.underwaterAudio.clip, MenuManager.Instance.masterVolumeScaler);
      
     }
     

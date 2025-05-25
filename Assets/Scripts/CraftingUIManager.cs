@@ -61,7 +61,7 @@ public class CraftingUIManager : MonoBehaviour
 
     public void ShowCraftingPanel()
     {
-        AudioManager.Instance.turnUIPageAudio.Play();
+        AudioManager.Instance.turnUIPageAudio.PlayOneShot(AudioManager.Instance.turnUIPageAudio.clip, MenuManager.Instance.masterVolumeScaler);
             
         craftingPanel.SetActive(true);
         recipesPanel.SetActive(false);
@@ -72,7 +72,7 @@ public class CraftingUIManager : MonoBehaviour
 
     public void ShowRecipesPanel()
     {
-        AudioManager.Instance.turnUIPageAudio.Play();
+        AudioManager.Instance.turnUIPageAudio.PlayOneShot(AudioManager.Instance.turnUIPageAudio.clip, MenuManager.Instance.masterVolumeScaler);
         
         craftingPanel.SetActive(false);
         recipesPanel.SetActive(true);
@@ -86,7 +86,7 @@ public class CraftingUIManager : MonoBehaviour
     {
         if ((currentPage + 1) * recipesPerPage < flatRecipeList.Count)
         {
-            AudioManager.Instance.turnUIPageAudio.Play();
+            AudioManager.Instance.turnUIPageAudio.PlayOneShot(AudioManager.Instance.turnUIPageAudio.clip, MenuManager.Instance.masterVolumeScaler);
             currentPage++;
             UpdateRecipePage();
         }
@@ -96,7 +96,7 @@ public class CraftingUIManager : MonoBehaviour
     {
         if (currentPage > 0)
         {
-            AudioManager.Instance.turnUIPageAudio.Play();
+            AudioManager.Instance.turnUIPageAudio.PlayOneShot(AudioManager.Instance.turnUIPageAudio.clip, MenuManager.Instance.masterVolumeScaler);
             currentPage--;
             UpdateRecipePage();
         }

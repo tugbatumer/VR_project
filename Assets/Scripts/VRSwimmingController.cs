@@ -1,7 +1,9 @@
 using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Rendering;
 using UnityEngine.XR.Interaction.Toolkit;
+using UnityEngine.XR.Interaction.Toolkit.Inputs.Haptics;
 using Random = UnityEngine.Random;
 
 public class VRSwimmingController : MonoBehaviour
@@ -12,6 +14,8 @@ public class VRSwimmingController : MonoBehaviour
     [SerializeField] public float waterDrag = 2f;
     [SerializeField] private float requiredStrokeVelocity = 2f;
     [SerializeField] private float strokeCooldown = 2f;
+    [SerializeField] private float headAboveWaterThreshold = 0.3f;
+    [SerializeField] private float isUnderwaterThreshold = 0.5f;
 
     [Header("Input Actions")] [SerializeField]
     private InputActionReference leftHandGripInput;
@@ -20,9 +24,16 @@ public class VRSwimmingController : MonoBehaviour
     [SerializeField] private InputActionReference rightHandGripInput;
     [SerializeField] private InputActionReference rightHandVelocityInput;
 
-
     [Header("References")] [SerializeField]
     private Transform orientationReference;
+
+    [SerializeField] private SwimAudioManager audio;
+    [SerializeField] private OxygenManager oxygenManager;
+    [SerializeField] private Volume underwaterVolum;
+
+    [Header("Haptics")] [SerializeField] public HapticImpulsePlayer hapticImpulsePlayer;
+    [SerializeField] private float hapticIntensity = 0.5f;
+    [SerializeField] private float hapticDuration = 0.2f;
 
     [Header("Boundary Settings")] [SerializeField]
     private LayerMask waterBoundariesLayer;
@@ -33,18 +44,6 @@ public class VRSwimmingController : MonoBehaviour
     private float cooldownTimer;
     private Camera mainCamera;
     private float currentWaterSurfaceY;
-
-    [SerializeField] private float headAboveWaterThreshold = 0.3f;
-    [SerializeField] private SwimAudioManager audio;
-    [SerializeField] private OxygenManager oxygenManager;
-
-    
-    [Header("Haptics")]
-    [SerializeField] private XRBaseController leftController;
-    [SerializeField] private XRBaseController rightController;
-    [SerializeField] private float hapticIntensity = 0.5f;
-    [SerializeField] private float hapticDuration = 0.2f;
-    
     private bool isUnderwater = false;
 
     public void SetWaterSurfaceHeight(float surfaceY)
@@ -66,14 +65,13 @@ public class VRSwimmingController : MonoBehaviour
         this.enabled = true;
         if (surfaceY is not null)
             SetWaterSurfaceHeight((float)surfaceY);
-            
-        
     }
 
     public void Disable()
     {
         playerBody.isKinematic = true;
         this.enabled = false;
+        underwaterVolum.enabled = false;
     }
 
     private void FixedUpdate()
@@ -88,19 +86,15 @@ public class VRSwimmingController : MonoBehaviour
 
         Vector3 forwardDirection1 = orientationReference.forward.normalized;
 
+
+        float underwaterBorderY = currentWaterSurfaceY - isUnderwaterThreshold;
+
         //is underwater
-        if (headY < currentWaterSurfaceY - 0.5 && !isUnderwater)
-        {
-            audio.PlayUnderwater();
-            isUnderwater = true;
-            oxygenManager.isUnderwater = true;
-        }
-        else if (headY > currentWaterSurfaceY && isUnderwater)
-        {
-            audio.StopUnderwater();
-            oxygenManager.isUnderwater = false;
-            isUnderwater = false;
-        }
+        if (headY < underwaterBorderY && !isUnderwater)
+            EnableUnderwater();
+        else if (headY > underwaterBorderY && isUnderwater)
+            EnableWaterSurface();
+
 
         if (!CanMoveInDirection(forwardDirection1))
         {
@@ -112,7 +106,7 @@ public class VRSwimmingController : MonoBehaviour
         if (headY > maxAllowedHeadY && CanMoveInDirection(forwardDirection1))
         {
             float excess = headY - maxAllowedHeadY;
-            
+
             Debug.Log("Apply surface force");
             // Apply downward force to simulate water boundary
             float pullStrength = Mathf.Clamp(excess * 20f, 0f, 20f);
@@ -209,23 +203,34 @@ public class VRSwimmingController : MonoBehaviour
 
         return true;
     }
-    
+
     private void SendHapticImpulse()
     {
-        if (leftController && rightController)
-        {
-            leftController.SendHapticImpulse(hapticIntensity, hapticDuration);
-            rightController.SendHapticImpulse(hapticIntensity, hapticDuration);
-        }
+        hapticImpulsePlayer.SendHapticImpulse(hapticIntensity, hapticDuration);
+            
     }
 
-    
+    private void EnableUnderwater()
+    {
+        underwaterVolum.enabled = true;
+        audio.PlayUnderwater();
+        isUnderwater = true;
+        oxygenManager.isUnderwater = true;
+    }
+
+    private void EnableWaterSurface()
+    {
+        audio.StopUnderwater();
+        oxygenManager.isUnderwater = false;
+        isUnderwater = false;
+        underwaterVolum.enabled = false;
+    }
+
     private void PlaySwim()
     {
-        if(isUnderwater)
+        if (isUnderwater)
             audio.PlayUnderwaterSwim();
         else
             audio.PlaySurfaceSwim();
     }
-    
 }

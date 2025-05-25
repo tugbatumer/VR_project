@@ -17,6 +17,7 @@ public class AudioManager : MonoBehaviour
     public AudioSource surfaceSwimAudio;
     public AudioSource underwaterAudio;
     public AudioClip[] underwaterSwimClips;
+    public AudioClip[] waterStepClips;
     
     public AudioSource turnUIPageAudio;
     public AudioSource craftingSuccessAudio;
@@ -29,6 +30,8 @@ public class AudioManager : MonoBehaviour
     public AudioSource puzzleSuccessAudio;
     public AudioSource puzzleFailureAudio;
     
+    public AudioSource soundtrackAudio;
+    
     private void Awake()
     {
         if(Instance != null && Instance != this)
@@ -39,6 +42,11 @@ public class AudioManager : MonoBehaviour
         {
             Instance = this;
         }
+    }
+
+    public void ChangeSoundtrackVolume(float volume)
+    {
+        soundtrackAudio.volume = volume;
     }
     
 }

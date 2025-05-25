@@ -45,13 +45,13 @@ public class TargetManager : MonoBehaviour
                 expectedIndex++;
                 if (expectedIndex == IDOrder.Length)
                 {
-                    AudioManager.Instance.puzzleSuccessAudio.Play();
+                    AudioManager.Instance.puzzleSuccessAudio.PlayOneShot(AudioManager.Instance.puzzleSuccessAudio.clip, MenuManager.Instance.masterVolumeScaler);
                     gameOver = true;
                 }
             }
             else
             {
-                AudioManager.Instance.puzzleFailureAudio.Play();
+                AudioManager.Instance.puzzleFailureAudio.PlayOneShot(AudioManager.Instance.puzzleFailureAudio.clip, MenuManager.Instance.masterVolumeScaler);
                 for (int i = 0; i < 4; i++)
                 {
                     lights[i].SetActive(false);
