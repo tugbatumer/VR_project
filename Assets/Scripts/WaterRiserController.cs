@@ -25,6 +25,7 @@ public class WaterRiserController : MonoBehaviour
         {
             Instance = this;
         }
+        StartRising();
     }
     private void Start()
     {
