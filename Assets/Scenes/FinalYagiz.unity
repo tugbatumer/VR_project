@@ -13032,6 +13032,7 @@ MonoBehaviour:
   mainTabButton: {fileID: 84364926}
   controlsTabButton: {fileID: 1410089141}
   featuresTabButton: {fileID: 427389701}
+  checkpointButton: {fileID: 896494072}
   startMenuCanvas: {fileID: 612541511}
   mainMenuCanvas: {fileID: 441983857}
   mainTabStart: {fileID: 1727983888}
@@ -18571,6 +18572,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0.0000024831502
       objectReference: {fileID: 0}
+    - target: {fileID: 5645424555209910014, guid: efcc5a60b474941c9a31cafdb8852e05, type: 3}
+      propertyPath: craftingUIManager
+      value: 
+      objectReference: {fileID: 1046009465}
     - target: {fileID: 5957750304674126741, guid: efcc5a60b474941c9a31cafdb8852e05, type: 3}
       propertyPath: m_LocalPosition.x
       value: 54.237366
@@ -24886,6 +24891,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.x
       value: -0.00000031795352
       objectReference: {fileID: 0}
+    - target: {fileID: 5645424555209910014, guid: efcc5a60b474941c9a31cafdb8852e05, type: 3}
+      propertyPath: craftingUIManager
+      value: 
+      objectReference: {fileID: 1388142565}
     - target: {fileID: 5957750304674126741, guid: efcc5a60b474941c9a31cafdb8852e05, type: 3}
       propertyPath: m_LocalPosition.x
       value: 10.068367
@@ -42876,6 +42885,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 668735768885291391, guid: 91ad7bf144749b04ab484a680630a040, type: 3}
   m_PrefabInstance: {fileID: 1045709428}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1046009465 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4912328387255675905, guid: efcc5a60b474941c9a31cafdb8852e05, type: 3}
+  m_PrefabInstance: {fileID: 481788937}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b54b8687c2839401aa87e7423fbcb9be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1046137510
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -51366,7 +51386,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbff1c090cb140c5ab15ba606ed877ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startCanvas: {fileID: 355775305}
+  menuCanvas: {fileID: 355775305}
   locomotionSystem: {fileID: 1004698632}
   hudCanvas: {fileID: 1065253404}
   gameplaySpawn: {fileID: 1088909994}
@@ -58293,6 +58313,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5062c1312f2beb14694d90a058d444e4, type: 3}
+--- !u!114 &1388142565 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4912328387255675905, guid: efcc5a60b474941c9a31cafdb8852e05, type: 3}
+  m_PrefabInstance: {fileID: 642411151}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b54b8687c2839401aa87e7423fbcb9be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1388436413
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -66729,7 +66760,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1232323002}
         m_TargetAssemblyTypeName: MenuManager, Assembly-CSharp
-        m_MethodName: StartGame
+        m_MethodName: ToggleMenu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -84684,9 +84715,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 355775314}
-        m_TargetAssemblyTypeName: MenuScreen, Assembly-CSharp
-        m_MethodName: ShowMainTab
+      - m_Target: {fileID: 1232323002}
+        m_TargetAssemblyTypeName: MenuManager, Assembly-CSharp
+        m_MethodName: StartGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -84696,9 +84727,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1232323002}
-        m_TargetAssemblyTypeName: MenuManager, Assembly-CSharp
-        m_MethodName: StartGame
+      - m_Target: {fileID: 355775314}
+        m_TargetAssemblyTypeName: MenuScreen, Assembly-CSharp
+        m_MethodName: ShowMainTab
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

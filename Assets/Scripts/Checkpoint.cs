@@ -7,7 +7,7 @@ public class Checkpoint : MonoBehaviour
         
         if (other.CompareTag("Player"))
         {
-            CheckpointManager.Instance.SetCheckpoint(transform.position);
+            CheckpointManager.Instance.SetCheckpoint(transform);
             HUDManager.Instance?.ShowCheckpointMessage();
             GetComponent<BoxCollider>().enabled = false;
         }

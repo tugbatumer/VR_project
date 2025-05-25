@@ -17,6 +17,8 @@ public class CraftingTable : MonoBehaviour
     public Image resultPreviewSlot;
 
     private List<Collectible.CollectibleType> insertedTypes = new();
+    
+    public CraftingUIManager craftingUIManager;
 
     public void insertCollectible()
     {
@@ -37,7 +39,7 @@ public class CraftingTable : MonoBehaviour
                 Destroy(InventoryManager.Instance.heldCollectible);
                 InventoryManager.Instance.heldCollectible = null;
                 
-                CraftingUIManager.Instance.ShowCraftingPanel();
+                craftingUIManager.ShowCraftingPanel();
             }
         }
 
@@ -70,7 +72,7 @@ public class CraftingTable : MonoBehaviour
 
             clearTable();
             
-            CraftingUIManager.Instance.ShowRecipesPanel();
+            craftingUIManager.ShowRecipesPanel();
         }
         
     }
@@ -86,7 +88,7 @@ public class CraftingTable : MonoBehaviour
         
         clearTable();
         
-        CraftingUIManager.Instance.ShowRecipesPanel();
+        craftingUIManager.ShowRecipesPanel();
     }
 
     private void clearTable()

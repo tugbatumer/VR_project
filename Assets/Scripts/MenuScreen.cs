@@ -5,10 +5,12 @@ using UnityEngine.UI;
 public class MenuScreen : MonoBehaviour
 {
     
-    [Header("Difficulty Levels")]
+    public static MenuScreen Instance { get; private set; }
+    
     public Button mainTabButton;
     public Button controlsTabButton;
     public Button featuresTabButton;
+    public Button checkpointButton;
     
     public GameObject startMenuCanvas;
     public GameObject mainMenuCanvas;
@@ -17,12 +19,26 @@ public class MenuScreen : MonoBehaviour
     public GameObject controlsTab;
     public GameObject featuresTab;
     
+    private void Awake()
+    {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            Instance = this;
+        }
+    }
+    
 
     void Start()
     {
         mainTabButton.interactable = false;
         controlsTabButton.interactable = true;
         featuresTabButton.interactable = true;
+        
+        checkpointButton.interactable = false;
         
         ShowMainTab();
     }

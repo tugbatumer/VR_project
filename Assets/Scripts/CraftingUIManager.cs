@@ -5,7 +5,6 @@ using System.Linq;
 
 public class CraftingUIManager : MonoBehaviour
 {
-    public static CraftingUIManager Instance { get; set; }
     
     [Header("Tab Panels")]
     public GameObject craftingPanel;
@@ -36,18 +35,6 @@ public class CraftingUIManager : MonoBehaviour
 
     private int currentPage = 0;
     private const int recipesPerPage = 2;
-
-    private void Awake()
-    {
-        if (Instance != null && Instance != this)
-        {
-            Destroy(gameObject);
-        }
-        else
-        {
-            Instance = this;
-        }
-    }
 
     void Start()
     {

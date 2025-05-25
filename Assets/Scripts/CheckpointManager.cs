@@ -7,12 +7,7 @@ public class CheckpointManager : MonoBehaviour
 
     [SerializeField] private Transform playerRigRoot;
 
-    private Vector3 lastCheckpointPosition = Vector3.zero;
-
-    public bool LastCheckPointExist()
-    {
-        return lastCheckpointPosition != Vector3.zero;
-    }
+    private Transform lastCheckpointPosition;
     
     private void Awake()
     {
@@ -27,9 +22,10 @@ public class CheckpointManager : MonoBehaviour
     }
 
 
-    public void SetCheckpoint(Vector3 position)
+    public void SetCheckpoint(Transform position)
     {
         lastCheckpointPosition = position;
+        MenuScreen.Instance.checkpointButton.interactable = true;
     }
 
 
@@ -45,8 +41,7 @@ public class CheckpointManager : MonoBehaviour
     {
         if (playerRigRoot)
         {
-            playerRigRoot.position = lastCheckpointPosition;
-            MenuManager.Instance.CloseMenu();
+            MenuManager.Instance.CloseMenu(lastCheckpointPosition.position, lastCheckpointPosition.rotation);
             ZoneController.Instance.DisableSwimming();
         }
     }

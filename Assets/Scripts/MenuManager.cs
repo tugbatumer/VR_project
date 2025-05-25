@@ -9,7 +9,7 @@ public class MenuManager : MonoBehaviour
 {
     public static MenuManager Instance { get; private set; }
     
-    public GameObject startCanvas;
+    public GameObject menuCanvas;
     public GameObject locomotionSystem;
     public GameObject hudCanvas;
     public Transform gameplaySpawn;
@@ -22,6 +22,10 @@ public class MenuManager : MonoBehaviour
     public int timeLimit = 15 * 60;
     public float remainingTime; 
     private bool timerPaused = true;
+    
+    private Vector3 beforePosition;
+    private Quaternion beforeRotation;
+    
 
     public float fadeDuration = 3.0f;
     private bool isMenuOpen;
@@ -44,7 +48,7 @@ public class MenuManager : MonoBehaviour
     {
         locomotionSystem.SetActive(false);
         hudCanvas.SetActive(false);
-        startCanvas.SetActive(true);
+        menuCanvas.SetActive(true);
         isMenuOpen = true;
 
         // Optional: Start with full black fade
@@ -70,13 +74,13 @@ public class MenuManager : MonoBehaviour
 
     public void StartGame()
     {
-        CloseMenu();
+        CloseMenu(gameplaySpawn.position, gameplaySpawn.rotation);
 
         // Move XR Rig to game position
-        xrRig.transform.SetPositionAndRotation(gameplaySpawn.position, gameplaySpawn.rotation);
         remainingTime = timeLimit;
         timerPaused = false;
         gameStarted = true;
+        isMenuOpen = false;
         
     }
     
@@ -87,7 +91,7 @@ public class MenuManager : MonoBehaviour
         
         locomotionSystem.SetActive(false);
         hudCanvas.SetActive(false);
-        startCanvas.SetActive(true);
+        menuCanvas.SetActive(true);
         
         xrRig.transform.SetPositionAndRotation(MenuTransform.position, MenuTransform.rotation);
         
@@ -147,27 +151,33 @@ public class MenuManager : MonoBehaviour
         masterVolumeScaler = volume;
     }
 
-    public void CloseMenu()
+    public void CloseMenu(Vector3 position, Quaternion rotation)
     {
+        xrRig.transform.SetPositionAndRotation(position, rotation);
+        Debug.Log("Closing menu");
         timerPaused = false;
         // Fade into game
         StartCoroutine(FadeIn());
         locomotionSystem.SetActive(true);
         hudCanvas.SetActive(true);
-        startCanvas.SetActive(false);
+        menuCanvas.SetActive(false);
+        isMenuOpen = false;
         
         
     }
 
     public void ToggleMenu()
     {
+        Debug.Log(isMenuOpen);
         if (isMenuOpen)
         {
-            CloseMenu();
+            CloseMenu(beforePosition, beforeRotation);
             isMenuOpen = false;
         }
         else
         {
+            beforePosition = xrRig.transform.position;
+            beforeRotation = xrRig.transform.rotation;
             OpenMenu();
             isMenuOpen = true;
         }
@@ -198,7 +208,6 @@ public class MenuManager : MonoBehaviour
         // Handle time over logic here
         Debug.Log("Time is over!");
         // You can trigger a game over screen or reset the game
-        CloseMenu();
         FindFirstObjectByType<TutorialManager>().ShowTutorial("Time is over! Try again.");
     }
 
