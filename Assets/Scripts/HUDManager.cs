@@ -25,6 +25,7 @@ public class HUDManager : MonoBehaviour
     
     [Header("Oxygen UI")]
     public Image oxygenBar;
+    public GameObject oxygenUI;
     
     [Header("Checkpoint Feedback")]
     public TextMeshProUGUI checkpointMessage;
@@ -93,7 +94,7 @@ public class HUDManager : MonoBehaviour
     {
         if (oxygenBar)
         {
-            oxygenBar.gameObject.SetActive(show);
+            oxygenUI.gameObject.SetActive(show);
         }
     }
     
