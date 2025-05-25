@@ -86,6 +86,8 @@ public class MenuManager : MonoBehaviour
         gameStarted = true;
         isMenuOpen = false;
         
+        TutorialManager.Instance.ShowTutorial("You appear to be trapped in a cage. Maybe you can find a key to grab by your grip buttons and insert in the lock?");
+        
     }
     
     void OpenMenu()
@@ -217,8 +219,9 @@ public class MenuManager : MonoBehaviour
     public void onGameWon()
     {
         timerPaused = true;
-        minutesText.text = $"{Mathf.FloorToInt(remainingTime / 60):00}";
-        secondsText.text = $"{Mathf.FloorToInt(remainingTime % 60):00}";
+        float timeSpent = timeLimit - remainingTime;
+        minutesText.text = $"{Mathf.FloorToInt(timeSpent / 60):00}";
+        secondsText.text = $"{Mathf.FloorToInt(timeSpent % 60):00}";
         AudioManager.Instance.gameWinAudio.PlayOneShot(AudioManager.Instance.gameWinAudio.clip, masterVolumeScaler);
         OpenMenu();
         isMenuOpen = true;

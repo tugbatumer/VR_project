@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.XR.Interaction.Toolkit.Inputs.Haptics;
 using UnityEngine.XR.Interaction.Toolkit.Interactors;
 
 public class ConsumptionManager : MonoBehaviour
@@ -25,6 +26,8 @@ public class ConsumptionManager : MonoBehaviour
     public GameObject oxygenPotionPartPrefab;
     public float OxygenPotionAmount = 0.5f;
     public GameObject aimCanvas;
+    
+    [SerializeField] public HapticImpulsePlayer rightHapticImpulse;
     
     private Dictionary<InventoryManager.itemType, GameObject> itemPrefabs;
     
@@ -113,6 +116,7 @@ public class ConsumptionManager : MonoBehaviour
                 heldConsumable.GetComponent<BowController>().leftHand = leftHandTransform;
                 heldConsumable.GetComponent<BowController>().rightHand = rightHandTransform;
                 heldConsumable.GetComponent<BowController>().aimCanvas = aimCanvas;
+                heldConsumable.GetComponent<BowController>().rightHapticImpulse = rightHapticImpulse;
                 
                 heldConsumable.transform.localPosition = Vector3.zero;
                 heldConsumable.transform.localRotation = Quaternion.identity;

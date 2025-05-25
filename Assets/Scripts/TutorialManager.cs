@@ -4,36 +4,26 @@ using System.Collections;
 
 public class TutorialManager : MonoBehaviour
 {
-    public CanvasGroup tutorialPanel;
+    public GameObject tutorialPanel;
     public TextMeshProUGUI tutorialText;
-
-    private Coroutine currentRoutine;
-
-    public void ShowTutorial(string message, float duration = -1f)
+    
+    public static TutorialManager Instance { get; private set; }
+    private void Awake()
     {
-        if (currentRoutine != null)
-            StopCoroutine(currentRoutine);
-
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            Instance = this;
+        }
+        
+    }
+    public void ShowTutorial(string message)
+    {
+        tutorialPanel.SetActive(true);
         tutorialText.text = message;
-        tutorialPanel.alpha = 1;
-        tutorialPanel.blocksRaycasts = true;
-        tutorialPanel.interactable = true;
-
-        if (duration > 0)
-            currentRoutine = StartCoroutine(HideAfterDelay(duration));
     }
-
-    IEnumerator HideAfterDelay(float time)
-    {
-        yield return new WaitForSeconds(time);
-        HideTutorial();
-    }
-
-    public void HideTutorial()
-    {
-        tutorialPanel.alpha = 0;
-        tutorialPanel.blocksRaycasts = false;
-        tutorialPanel.interactable = false;
-        tutorialText.text = "";
-    }
+    
 }

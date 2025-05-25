@@ -2,6 +2,7 @@ using Unity.XR.CoreUtils;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.XR.Interaction.Toolkit;
+using UnityEngine.XR.Interaction.Toolkit.Inputs.Haptics;
 using UnityEngine.XR.Interaction.Toolkit.Interactables;
 using UnityEngine.XR.Interaction.Toolkit.Interactors;
 
@@ -40,6 +41,10 @@ public class BowController : MonoBehaviour
     public GameObject aimCanvas;
     public float maxRayDistance = 100f;
     
+    [SerializeField] public HapticImpulsePlayer rightHapticImpulse;
+    [SerializeField] private float hapticIntensity = 0.5f;
+    [SerializeField] private float hapticDuration = 0.2f;
+    
     
 
     void Start()
@@ -62,9 +67,15 @@ public class BowController : MonoBehaviour
         // Simulate string pull
         if (pullingHand && currentArrow)
         {
+            
             Vector3 pullDir = (stringPullLimit.position - stringRestPosition.position).normalized;
             pullAmount = Vector3.Dot(pullingHand.position - stringRestPosition.position, pullDir);
             pullAmount = Mathf.Clamp(pullAmount, 0, maxPullDistance);
+
+            if (pullAmount > 0)
+            {
+                rightHapticImpulse.SendHapticImpulse(hapticIntensity, hapticDuration);
+            }
 
             Vector3 rayOrigin = currentArrow.transform.Find("tipPoint").position;
             if (Physics.Raycast(rayOrigin, -1.0f * pullDir, out RaycastHit hit, maxRayDistance))
