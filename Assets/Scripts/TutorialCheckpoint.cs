@@ -10,6 +10,7 @@ public class TutorialCheckpoint : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             TutorialManager.Instance.ShowTutorial(tutorialMessage);
+            GetComponent<BoxCollider>().enabled = false;
         }
     }
 }
