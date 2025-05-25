@@ -36,10 +36,25 @@ This game is developed in Unity editor version 6000.0.41f1 for Oculus Quest 2 he
 To rebuild and run the game:
 
 1. Clone this repository.
-2. Open it in Unity Hub using the specified version.
-3. Ensure your VR setup (e.g., OpenXR, Oculus Integration) is properly configured.
-4. Open the main scene: `Scenes/MainScene.unity`.
-5. Press Play in Unity (with a VR headset connected, if required).
+```bash
+  https://github.com/tugbatumer/VR_project.git 
+```
+2. Open Unity Hub, select the folder you just cloned. The project was created with this version 6000.0.41f1.
+3. Install the required packages
+   - Universal RP
+   - XR Interaction Toolkit
+   - XR Plugin Management
+   - OpenXR Plugin
+4.  Configure XR Settings
+    - Enable `OpenXR` under both `PC` and `Android` tabs.
+    - Under `OpenXR` > `Feature Groups`, enable:
+      - Meta Quest Support
+      - Oculus Touch Controller Profile
+    - Under `OpenXR` > `Project Validation`, click Fix all
+4. Go to Build Settings, set the target platform to `Android`.
+5. Change the active input system to the newest system.
+5. Ensure the build scene list contains `FinalScene`.
+6. Click Build to generate the `.apk` file. 
 
 ---
 
