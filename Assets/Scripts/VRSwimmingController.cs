@@ -166,7 +166,7 @@ public class VRSwimmingController : MonoBehaviour
                 if (CanMoveInDirection(swimDirection.normalized) && !(headY > maxAllowedHeadY))
                 {
                     PlaySwim();
-                    SendHapticImpulse();
+                    //SendHapticImpulse();
                     playerBody.AddForce(swimDirection * propulsionStrength, ForceMode.Acceleration);
                     cooldownTimer = 0f;
                 }
