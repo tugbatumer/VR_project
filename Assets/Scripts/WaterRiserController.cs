@@ -32,8 +32,6 @@ public class WaterRiserController : MonoBehaviour
         {
             startLocalPosition = waterObject.localPosition;
         }
-
-        StartRising();
     }
 
     public void StartRising()

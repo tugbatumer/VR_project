@@ -47,6 +47,7 @@ public class CheckpointManager : MonoBehaviour
         {
             playerRigRoot.position = lastCheckpointPosition;
             MenuManager.Instance.CloseMenu();
+            ZoneController.Instance.DisableSwimming();
         }
     }
 }

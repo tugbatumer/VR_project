@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine.UI;
 
 public class CraftingTable : MonoBehaviour
@@ -63,9 +64,8 @@ public class CraftingTable : MonoBehaviour
 
             if (CraftingManager.Instance.recipes.TryGetValue(key, out var result))
             {
-                InventoryManager.Instance.IncrementItemCount(result, 1);
+                InventoryManager.Instance.IncrementItemCount(result, result == InventoryManager.itemType.Arrow ? 20 : 1);
                 AudioManager.Instance.craftingSuccessAudio.PlayOneShot(AudioManager.Instance.craftingSuccessAudio.clip, MenuManager.Instance.masterVolumeScaler);
-                
             }
 
             clearTable();

@@ -30,9 +30,9 @@ public class InventoryManager : MonoBehaviour
     
     public Dictionary<itemType, int> itemCounts = new Dictionary<itemType, int>
     {
-        { itemType.Bow, 3 },
-        { itemType.Arrow, 10 },
-        { itemType.OxygenPotion, 3 }
+        { itemType.Bow, 0 },
+        { itemType.Arrow, 0 },
+        { itemType.OxygenPotion, 0 }
     };
     
     private void Awake()

@@ -27,6 +27,7 @@ public class ZoneController : MonoBehaviour
 
     public void SwitchZone(Zone.ZoneType newZone, float? surfaceY)
     {
+        Debug.Log($"Try swıtched zone: {currentZone}");
         if (newZone == currentZone) return;
 
         currentZone = newZone;
@@ -34,19 +35,28 @@ public class ZoneController : MonoBehaviour
 
         if (currentZone == Zone.ZoneType.Water)
         {
-            swimmingController.Enable(surfaceY);
-            moveProvider.enabled = false;
-            footsteps.enabled = false;
-            characterController.enabled = false;
-            
+            EnableSwimming(surfaceY);
         }
         else // Land
         {
-            swimmingController.Disable();
-            moveProvider.enabled = true;
-            footsteps.enabled = true;
-            characterController.enabled = true;
-            IsWalksOnWater = true;
+            DisableSwimming();
         }
+    }
+    
+    public void EnableSwimming(float? surfaceY)
+    {
+        moveProvider.enabled = false;
+        footsteps.enabled = false;
+        characterController.enabled = false;
+        swimmingController.Enable(surfaceY);
+    }
+    
+    public void DisableSwimming()
+    {
+        swimmingController.Disable();
+        moveProvider.enabled = true;
+        footsteps.enabled = true;
+        characterController.enabled = true;
+        IsWalksOnWater = true;
     }
 }
