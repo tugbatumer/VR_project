@@ -14,12 +14,12 @@ public class ArcheryDoor : MonoBehaviour
         }
         else
         {
-            AudioManager.Instance.lockedDoorAudio.Play();
+            AudioManager.Instance.lockedDoorAudio.PlayOneShot(AudioManager.Instance.lockedDoorAudio.clip, MenuManager.Instance.masterVolumeScaler);
         }
     }
     
     public void PlayDoorOpeningAudio()
     {
-        AudioManager.Instance.doorOpeningAudio.Play();
+        AudioManager.Instance.doorOpeningAudio.PlayOneShot(AudioManager.Instance.doorOpeningAudio.clip, MenuManager.Instance.masterVolumeScaler);
     }
 }

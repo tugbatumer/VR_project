@@ -37,7 +37,6 @@ public class CheckpointManager : MonoBehaviour
     public void SetCheckpoint(Vector3 position)
     {
         lastCheckpointPosition = position;
-        Debug.Log($"Checkpoint set at {position}");
     }
 
     private void OnTeleportPressed(InputAction.CallbackContext context)
@@ -53,12 +52,12 @@ public class CheckpointManager : MonoBehaviour
         }
     }
     
-    private void TeleportToCheckpoint()
+    public void TeleportToCheckpoint()
     {
         if (playerRigRoot)
         {
             playerRigRoot.position = lastCheckpointPosition;
-            Debug.Log("Teleported to checkpoint.");
+            MenuManager.Instance.CloseMenu();
         }
     }
 }

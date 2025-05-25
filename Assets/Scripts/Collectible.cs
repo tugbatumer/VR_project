@@ -14,7 +14,7 @@ public class Collectible : MonoBehaviour
     
     public void OnPickedUp()
     {
-        AudioManager.Instance.collectItemAudio.Play();
+        AudioManager.Instance.collectItemAudio.PlayOneShot(AudioManager.Instance.collectItemAudio.clip, MenuManager.Instance.masterVolumeScaler);
         CollectibleManager.Instance.PickUpCollectible(this);
         Destroy(gameObject);
     }

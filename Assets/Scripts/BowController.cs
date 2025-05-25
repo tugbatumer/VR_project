@@ -128,8 +128,8 @@ public class BowController : MonoBehaviour
     public void FireArrow()
     {
         if (!currentArrow || pullAmount == 0) return;
-
-        AudioManager.Instance.arrowShootingAudio.Play();
+        
+        AudioManager.Instance.arrowShootingAudio.PlayOneShot(AudioManager.Instance.arrowShootingAudio.clip, MenuManager.Instance.masterVolumeScaler);
         Rigidbody rb = currentArrow.GetComponent<Rigidbody>();
         rb.isKinematic = false;
         rb.useGravity = true;

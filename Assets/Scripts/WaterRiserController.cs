@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class WaterRiserController : MonoBehaviour
 {
+    public static WaterRiserController Instance { get; set; }
     [Header("Rising Settings")]
     public Transform waterObject;
     public Vector3 targetLocalPosition;
@@ -14,6 +15,17 @@ public class WaterRiserController : MonoBehaviour
     [Header("Colliders To Activate After Rising")]
     public List<BoxCollider> activateAfterRise;
 
+    private void Awake()
+    {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            Instance = this;
+        }
+    }
     private void Start()
     {
         if (waterObject != null)

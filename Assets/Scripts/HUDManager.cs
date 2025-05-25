@@ -29,6 +29,10 @@ public class HUDManager : MonoBehaviour
     [Header("Checkpoint Feedback")]
     public TextMeshProUGUI checkpointMessage;
     public float messageDuration = 2f;
+    
+    [Header("Remaining Time")]
+    public TextMeshProUGUI minutesText;
+    public TextMeshProUGUI secondsText;
 
     public void ShowCheckpointMessage()
     {
@@ -72,6 +76,9 @@ public class HUDManager : MonoBehaviour
         bowCount.text = $"{InventoryManager.Instance.GetItemCount(InventoryManager.itemType.Bow)}";
         oxygenPotionCount.text = $"{InventoryManager.Instance.GetItemCount(InventoryManager.itemType.OxygenPotion)}";
         arrowCount.text = $"{InventoryManager.Instance.GetItemCount(InventoryManager.itemType.Arrow)}";
+        
+        minutesText.text = $"{Mathf.FloorToInt(MenuManager.Instance.remainingTime / 60):00}";
+        secondsText.text = $"{Mathf.FloorToInt(MenuManager.Instance.remainingTime % 60):00}";
     }
 
     public void UpdateOxygenBar(float fillAmount)
